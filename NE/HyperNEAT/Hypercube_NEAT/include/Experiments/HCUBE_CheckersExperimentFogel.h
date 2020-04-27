@@ -33,7 +33,7 @@ namespace HCUBE
         virtual void generateSubstrate(int substrateNum=0);
 
         virtual void populateSubstrate(
-            shared_ptr<NEAT::GeneticIndividual> individual,
+            boost::shared_ptr<NEAT::GeneticIndividual> individual,
             int substrateNum=0
         );
 

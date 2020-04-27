@@ -23,14 +23,14 @@ namespace HCUBE
 
         virtual NEAT::GeneticPopulation* createInitialPopulation(int populationSize);
 
-        virtual void processGroup(shared_ptr<NEAT::GeneticGeneration> generation);
+        virtual void processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation);
 
-        virtual double processEvaluation(shared_ptr<const NEAT::GeneticIndividual> individual,wxDC *drawContext,double x,double y);
+        virtual double processEvaluation(boost::shared_ptr<const NEAT::GeneticIndividual> individual,wxDC *drawContext,double x,double y);
 
-        virtual double processEvaluation(shared_ptr<const NEAT::GeneticIndividual> individual,double x,double y);
+        virtual double processEvaluation(boost::shared_ptr<const NEAT::GeneticIndividual> individual,double x,double y);
 
 #ifndef HCUBE_NOGUI
-        virtual void createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual);
+        virtual void createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual);
 
         virtual bool handleMousePress(wxMouseEvent& event,wxSize &bitmapSize);
 #endif

@@ -15,17 +15,17 @@ namespace HCUBE
     public:
     protected:
         bool running;
-        shared_ptr<Experiment> experiment;
-        shared_ptr<NEAT::GeneticGeneration> generation;
-        vector<shared_ptr<NEAT::GeneticIndividual> >::iterator individualIterator;
+        boost::shared_ptr<Experiment> experiment;
+        boost::shared_ptr<NEAT::GeneticGeneration> generation;
+        vector<boost::shared_ptr<NEAT::GeneticIndividual> >::iterator individualIterator;
         int individualCount;
         bool finished;
 
     public:
         EvaluationSet(
-            shared_ptr<Experiment> _experiment,
-            shared_ptr<NEAT::GeneticGeneration> _generation,
-            vector<shared_ptr<NEAT::GeneticIndividual> >::iterator _individualIterator,
+            boost::shared_ptr<Experiment> _experiment,
+            boost::shared_ptr<NEAT::GeneticGeneration> _generation,
+            vector<boost::shared_ptr<NEAT::GeneticIndividual> >::iterator _individualIterator,
             int _individualCount
         )
                 :

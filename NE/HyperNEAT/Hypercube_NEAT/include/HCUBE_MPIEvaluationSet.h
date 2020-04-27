@@ -22,9 +22,9 @@ namespace HCUBE
 
     public:
         MPIEvaluationSet(
-            shared_ptr<Experiment> _experiment,
-            shared_ptr<NEAT::GeneticGeneration> _generation,
-            vector<shared_ptr<NEAT::GeneticIndividual> >::iterator _individualIterator,
+            boost::shared_ptr<Experiment> _experiment,
+            boost::shared_ptr<NEAT::GeneticGeneration> _generation,
+            vector<boost::shared_ptr<NEAT::GeneticIndividual> >::iterator _individualIterator,
             int _individualCount,
             int _targetProcessor
         )

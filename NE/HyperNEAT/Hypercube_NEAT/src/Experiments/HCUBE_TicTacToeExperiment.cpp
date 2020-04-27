@@ -40,7 +40,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             for (int b=0;b<0;b++)
             {
@@ -209,7 +209,7 @@ namespace HCUBE
         delete[] nodeBiases;
     }
 
-    void TicTacToeExperiment::populateSubstrate(shared_ptr<const NEAT::GeneticIndividual> individual)
+    void TicTacToeExperiment::populateSubstrate(boost::shared_ptr<const NEAT::GeneticIndividual> individual)
     {
         NEAT::FastNetwork<double> network = individual->spawnFastPhenotypeStack<double>();
 
@@ -309,7 +309,7 @@ namespace HCUBE
     }
 
     double TicTacToeExperiment::processEvaluation(
-        shared_ptr<NEAT::GeneticIndividual> individual,
+        boost::shared_ptr<NEAT::GeneticIndividual> individual,
         wxDC *drawContext,
         int boardState
     )
@@ -600,9 +600,9 @@ if (drawContext)drawContext->DrawText('F',(x+2)*20,(y+2)*20);
 #endif
     }
 
-    void TicTacToeExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void TicTacToeExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
-        shared_ptr<NEAT::GeneticIndividual> individual = group.front();
+        boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
         //You get 10 points just for entering the game, wahooo!
         individual->setFitness(10);
 
@@ -684,7 +684,7 @@ if (drawContext)drawContext->DrawText('F',(x+2)*20,(y+2)*20);
     }
 
 #ifndef HCUBE_NOGUI
-    void TicTacToeExperiment::createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual)
+    void TicTacToeExperiment::createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         if (lastIndividualSeen!=individual)
         {

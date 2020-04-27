@@ -24,11 +24,11 @@ namespace HCUBE
         virtual NEAT::GeneticPopulation* createInitialPopulation(int populationSize);
 
         virtual pair<double,double> playGame(
-            shared_ptr<NEAT::GeneticIndividual> ind1,
-            shared_ptr<NEAT::GeneticIndividual> ind2
+            boost::shared_ptr<NEAT::GeneticIndividual> ind1,
+            boost::shared_ptr<NEAT::GeneticIndividual> ind2
         );
 
-        virtual void processGroup(shared_ptr<NEAT::GeneticGeneration> generation);
+        virtual void processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation);
 
         virtual Experiment* clone();
     };

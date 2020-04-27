@@ -22,7 +22,7 @@ namespace HCUBE
     NEAT::GeneticPopulation* CoCheckersExperiment::createInitialPopulation(int populationSize)
     {
         GeneticPopulation *population = new GeneticPopulation(
-            shared_ptr<CoCheckersExperiment>((CoCheckersExperiment*)this->clone())
+            boost::shared_ptr<CoCheckersExperiment>((CoCheckersExperiment*)this->clone())
         );
         vector<GeneticNodeGene> genes;
 
@@ -43,7 +43,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             for (int b=0;b<0;b++)
             {
@@ -53,13 +53,13 @@ namespace HCUBE
             population->addIndividual(individual);
         }
 
-        shared_ptr<NEAT::CoEvoGeneticGeneration> coEvoGeneration =
+        boost::shared_ptr<NEAT::CoEvoGeneticGeneration> coEvoGeneration =
             static_pointer_cast<NEAT::CoEvoGeneticGeneration>(population->getGeneration());
 
         //Create the tests
         for (int a=0;a<(population->getIndividualCount()/10);a++)
         {
-            shared_ptr<NEAT::GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<NEAT::GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             //This function clones the individual to make a test
             coEvoGeneration->addTest(individual);
@@ -81,8 +81,8 @@ namespace HCUBE
     */
 
     pair<double,double> CoCheckersExperiment::playGame(
-        shared_ptr<NEAT::GeneticIndividual> ind1,
-        shared_ptr<NEAT::GeneticIndividual> ind2
+        boost::shared_ptr<NEAT::GeneticIndividual> ind1,
+        boost::shared_ptr<NEAT::GeneticIndividual> ind2
     )
     {
         //You get 1 point just for entering the game, wahooo!
@@ -289,11 +289,11 @@ namespace HCUBE
         return rewards;
     }
 
-    void CoCheckersExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void CoCheckersExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
         //cout << "Processing group\n";
 
-        shared_ptr<NEAT::CoEvoGeneticGeneration> coEvoGeneration =
+        boost::shared_ptr<NEAT::CoEvoGeneticGeneration> coEvoGeneration =
             static_pointer_cast<NEAT::CoEvoGeneticGeneration>(generation);
 
         //Play all the tests, but do not change test fitness
@@ -309,11 +309,11 @@ namespace HCUBE
         }
     }
 
-    void CoCheckersExperiment::processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual)
+    void CoCheckersExperiment::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         clearGroup();
         addIndividualToGroup(individual);
-        shared_ptr<GeneticGeneration> dummy;
+        boost::shared_ptr<GeneticGeneration> dummy;
         CheckersExperiment::processGroup(dummy);
 
         individual->setUserData(toString(individual->getFitness()));
@@ -328,8 +328,8 @@ namespace HCUBE
     }
 
     void CoCheckersExperiment::addGenerationData(
-        shared_ptr<NEAT::GeneticGeneration> generation,
-        shared_ptr<NEAT::GeneticIndividual> individual
+        boost::shared_ptr<NEAT::GeneticGeneration> generation,
+        boost::shared_ptr<NEAT::GeneticIndividual> individual
     )
     {
     }

@@ -16,7 +16,7 @@
 
 namespace NEAT
 {
-    CoEvoGeneticGeneration::CoEvoGeneticGeneration(int _generationNumber,shared_ptr<CoEvoExperiment> _experiment)
+    CoEvoGeneticGeneration::CoEvoGeneticGeneration(int _generationNumber,boost::shared_ptr<CoEvoExperiment> _experiment)
         :
     GeneticGeneration(_generationNumber),
         experiment(_experiment)
@@ -24,12 +24,12 @@ namespace NEAT
 
     CoEvoGeneticGeneration::CoEvoGeneticGeneration(
         CoEvoGeneticGeneration *previousGeneration,
-        const vector<shared_ptr<GeneticIndividual> > &newIndividuals,
+        const vector<boost::shared_ptr<GeneticIndividual> > &newIndividuals,
         int _generationNumber,
-        const vector<shared_ptr<GeneticIndividual> > &newTests,
+        const vector<boost::shared_ptr<GeneticIndividual> > &newTests,
         const vector< vector<bool> > &newTestResults,
         const vector< vector<double> > &newTestFitnesses,
-        shared_ptr<CoEvoExperiment> _experiment
+        boost::shared_ptr<CoEvoExperiment> _experiment
         )
         :
     GeneticGeneration(previousGeneration,newIndividuals,_generationNumber),
@@ -39,12 +39,12 @@ namespace NEAT
         experiment(_experiment)
     {}
 
-    shared_ptr<GeneticGeneration> CoEvoGeneticGeneration::produceNextGeneration(
-        const vector<shared_ptr<GeneticIndividual> > &newIndividuals,
+    boost::shared_ptr<GeneticGeneration> CoEvoGeneticGeneration::produceNextGeneration(
+        const vector<boost::shared_ptr<GeneticIndividual> > &newIndividuals,
         int _generationNumber
         )
     {
-        return shared_ptr<GeneticGeneration>(
+        return boost::shared_ptr<GeneticGeneration>(
             new CoEvoGeneticGeneration(
             this,
             newIndividuals,
@@ -59,7 +59,7 @@ namespace NEAT
 
     CoEvoGeneticGeneration::CoEvoGeneticGeneration(
         TiXmlElement *generationElement,
-        shared_ptr<CoEvoExperiment> _experiment
+        boost::shared_ptr<CoEvoExperiment> _experiment
         )
         :
     GeneticGeneration(generationElement),
@@ -69,7 +69,7 @@ namespace NEAT
 
         while ( individualElement!=NULL )
         {
-            tests.push_back(shared_ptr<GeneticIndividual>(new GeneticIndividual(individualElement)));
+            tests.push_back(boost::shared_ptr<GeneticIndividual>(new GeneticIndividual(individualElement)));
             individualElement = individualElement->NextSiblingElement("Test");
         }
 
@@ -102,9 +102,9 @@ namespace NEAT
     CoEvoGeneticGeneration::~CoEvoGeneticGeneration()
     {}
 
-    shared_ptr<GeneticIndividual> CoEvoGeneticGeneration::addTest(shared_ptr<GeneticIndividual> test)
+    boost::shared_ptr<GeneticIndividual> CoEvoGeneticGeneration::addTest(boost::shared_ptr<GeneticIndividual> test)
     {
-        shared_ptr<GeneticIndividual> newTest(
+        boost::shared_ptr<GeneticIndividual> newTest(
             new GeneticIndividual(*(test.get()))
             );
 
@@ -134,7 +134,7 @@ namespace NEAT
     void CoEvoGeneticGeneration::removeTest(int index)
     {
         /*
-        vector<shared_ptr<GeneticIndividual> >::iterator loc = find(tests.begin(),tests.end(),test);
+        vector<boost::shared_ptr<GeneticIndividual> >::iterator loc = find(tests.begin(),tests.end(),test);
 
         if (loc != tests.end())
         {
@@ -164,7 +164,7 @@ namespace NEAT
 
         for (int a=0;a<getTestCount();a++)
         {
-            shared_ptr<GeneticIndividual> testA = getTest(a);
+            boost::shared_ptr<GeneticIndividual> testA = getTest(a);
 
             testA->setFitness(0);
 
@@ -173,7 +173,7 @@ namespace NEAT
                 if (b==a)
                     continue;
 
-                //shared_ptr<GeneticIndividual> testB = getTest(b);
+                //boost::shared_ptr<GeneticIndividual> testB = getTest(b);
                 testA->reward(testFitnesses[a][b]);
 
             }
@@ -206,7 +206,7 @@ namespace NEAT
         return maxFitness;
     }
 
-    void CoEvoGeneticGeneration::replaceLowestTest(shared_ptr<GeneticIndividual> indToReplace)
+    void CoEvoGeneticGeneration::replaceLowestTest(boost::shared_ptr<GeneticIndividual> indToReplace)
     {
         if (getTestCount()==0)
         {
@@ -262,18 +262,18 @@ namespace NEAT
         cout << "Bootstrapping tests...";
         for (int a=0;a<getTestCount();a++)
         {
-            shared_ptr<GeneticIndividual> testA = getTest(a);
+            boost::shared_ptr<GeneticIndividual> testA = getTest(a);
 
             testA->setFitness(0.0);
         }
 
         for (int a=0;a<getTestCount();a++)
         {
-            shared_ptr<GeneticIndividual> testA = getTest(a);
+            boost::shared_ptr<GeneticIndividual> testA = getTest(a);
 
             for (int b=(a+1);b<getTestCount();b++)
             {
-                shared_ptr<GeneticIndividual> testB = getTest(b);
+                boost::shared_ptr<GeneticIndividual> testB = getTest(b);
 
                 pair<double,double> rewards = experiment->playGame(
                     testA,
@@ -318,7 +318,7 @@ namespace NEAT
 
         for (int a=0;a<(int)individuals.size();a++)
         {
-            shared_ptr<GeneticIndividual> individual = individuals[a];
+            boost::shared_ptr<GeneticIndividual> individual = individuals[a];
 
             //If the individual is better than the best test case
             if (individual->getFitness() >= maxFitness)
@@ -326,7 +326,7 @@ namespace NEAT
                 cout << "***Adding Test*** Individual: " << individual->getFitness() << " Max: " << maxFitness << endl;
 
                 //Add the individual
-                shared_ptr<GeneticIndividual> test = addTest(individual);
+                boost::shared_ptr<GeneticIndividual> test = addTest(individual);
 
                 /*
                 NOTE:
@@ -340,7 +340,7 @@ namespace NEAT
                 for (int a=0;a<getTestCount();a++)
                 {
 
-                    shared_ptr<GeneticIndividual> testA = getTest(a);
+                    boost::shared_ptr<GeneticIndividual> testA = getTest(a);
 
                     if (test != getTest(a))
                     {

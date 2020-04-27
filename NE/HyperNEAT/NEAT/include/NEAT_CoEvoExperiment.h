@@ -13,8 +13,8 @@ namespace NEAT
 
     public:
         virtual pair<double,double> playGame(
-            shared_ptr<GeneticIndividual> ind1,
-            shared_ptr<GeneticIndividual> ind2) = 0;
+            boost::shared_ptr<GeneticIndividual> ind1,
+            boost::shared_ptr<GeneticIndividual> ind2) = 0;
 
         virtual ~CoEvoExperiment() {}
     };

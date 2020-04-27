@@ -75,7 +75,7 @@ namespace NEAT
 		NEAT_DLL_EXPORT void setLayerInfo(LayeredSubstrateInfo layerInfo);
 
 		NEAT_DLL_EXPORT void populateSubstrate(
-			shared_ptr<NEAT::GeneticIndividual> individual
+			boost::shared_ptr<NEAT::GeneticIndividual> individual
 			);
 
 		inline NetworkDataType convertOutputToWeight(

@@ -68,12 +68,12 @@ namespace NEAT
         /**
          * Create a baby individual from two parents
         */
-        NEAT_DLL_EXPORT GeneticIndividual(shared_ptr<GeneticIndividual> parent1,shared_ptr<GeneticIndividual> parent2,bool mate_multipoint_avg=false);
+        NEAT_DLL_EXPORT GeneticIndividual(boost::shared_ptr<GeneticIndividual> parent1,boost::shared_ptr<GeneticIndividual> parent2,bool mate_multipoint_avg=false);
 
         /**
          * Create a baby individual from one parent
         */
-        NEAT_DLL_EXPORT GeneticIndividual(shared_ptr<GeneticIndividual> parent,bool tryMutation);
+        NEAT_DLL_EXPORT GeneticIndividual(boost::shared_ptr<GeneticIndividual> parent,bool tryMutation);
 
         /**
          * Copy an individual. THIS COPIES FITNESS TOO!  DO NOT USE THIS TO MAKE OFFSPRING!
@@ -155,7 +155,7 @@ namespace NEAT
         /**
          * getCompatibility: returns the compatibility between this individual and another
          */
-        NEAT_DLL_EXPORT double getCompatibility(shared_ptr<GeneticIndividual> other);
+        NEAT_DLL_EXPORT double getCompatibility(boost::shared_ptr<GeneticIndividual> other);
 
         inline void setCanReproduce(bool _canReproduce)
         {

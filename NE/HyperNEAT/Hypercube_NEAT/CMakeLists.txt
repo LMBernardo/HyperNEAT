@@ -125,7 +125,7 @@ SET(
 
 SET(
 	FUEGO_INCLUDE
-	"../../../fuego-0.4"
+	"../../../fuego-1.1"
 	CACHE
 	PATH 
 	"Fuego include directory"
@@ -284,7 +284,7 @@ SET(
 
 SET(
     FUEGO_LIB
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../../fuego-0.4/out/"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../../fuego-1.1/out/"
     CACHE
     PATH 
     "Fuego Library Directory"
@@ -329,7 +329,7 @@ ADD_LIBRARY(
 	src/Experiments/HCUBE_XorExperiment.cpp
 	src/Experiments/HCUBE_XorCoExperiment.cpp
 	src/Experiments/HCUBE_CheckersCommon.cpp
-	src/Experiments/HCUBE_GoExperiment.cpp
+	# src/Experiments/HCUBE_GoExperiment.cpp
 	src/Experiments/HCUBE_CheckersExperiment.cpp
 	src/Experiments/HCUBE_CheckersExperimentPruning.cpp
 	src/Experiments/HCUBE_CheckersExperimentFogel.cpp
@@ -382,7 +382,7 @@ ADD_LIBRARY(
 	include/Experiments/HCUBE_OthelloExperiment.h
 	include/Experiments/HCUBE_OthelloCoExperiment.h
 	include/Experiments/HCUBE_OthelloCommon.h
-	include/Experiments/HCUBE_GoExperiment.h
+	# include/Experiments/HCUBE_GoExperiment.h
 	include/Experiments/HCUBE_CheckersExperiment.h
 	include/Experiments/HCUBE_CheckersExperimentPruning.h
 	include/Experiments/HCUBE_CheckersExperimentFogel.h
@@ -511,29 +511,29 @@ TARGET_LINK_LIBRARIES(
 	optimized
 	board
 
-	debug
-	FuegoLib_d
+	# debug
+	# FuegoLib_d
 	
-	optimized
-	FuegoLib
+	# optimized
+	# FuegoLib
 
 	debug
 	${BOOST_LIB_PREFIX_NAME}boost_thread-${BOOST_LIB_EXT_NAME_DEBUG}
-
+ 
 	optimized
-	${BOOST_LIB_PREFIX_NAME}boost_thread-${BOOST_LIB_EXT_NAME_RELEASE}
+	${BOOST_LIB_PREFIX_NAME}boost_thread
 
 	debug
 	${BOOST_LIB_PREFIX_NAME}boost_filesystem-${BOOST_LIB_EXT_NAME_DEBUG}
 
 	optimized
-	${BOOST_LIB_PREFIX_NAME}boost_filesystem-${BOOST_LIB_EXT_NAME_RELEASE}
+	${BOOST_LIB_PREFIX_NAME}boost_filesystem
 
 	debug
-	${BOOST_LIB_PREFIX_NAME}boost_system-${BOOST_LIB_EXT_NAME_DEBUG}
+	 ${BOOST_LIB_PREFIX_NAME}boost_system-${BOOST_LIB_EXT_NAME_DEBUG}
 
 	optimized
-	${BOOST_LIB_PREFIX_NAME}boost_system-${BOOST_LIB_EXT_NAME_RELEASE}
+	${BOOST_LIB_PREFIX_NAME}boost_system
 )
 
 IF(USE_GUI)
@@ -742,29 +742,29 @@ IF(BUILD_MPI)
 	optimized
 	board
 
-	        debug
-	        FuegoLib_d
+	        # debug
+	        # FuegoLib_d
         	
-	        optimized
-	        FuegoLib
+	        # optimized
+	        # FuegoLib
 
 			debug
 			${BOOST_LIB_PREFIX_NAME}boost_thread-${BOOST_LIB_EXT_NAME_DEBUG}
 
 			optimized
-			${BOOST_LIB_PREFIX_NAME}boost_thread-${BOOST_LIB_EXT_NAME_RELEASE}
+			${BOOST_LIB_PREFIX_NAME}boost_thread
 
 			debug
 			${BOOST_LIB_PREFIX_NAME}boost_filesystem-${BOOST_LIB_EXT_NAME_DEBUG}
 
 			optimized
-			${BOOST_LIB_PREFIX_NAME}boost_filesystem-${BOOST_LIB_EXT_NAME_RELEASE}
+			${BOOST_LIB_PREFIX_NAME}boost_filesystem
 
 			debug
 			${BOOST_LIB_PREFIX_NAME}boost_system-${BOOST_LIB_EXT_NAME_DEBUG}
 
 			optimized
-			${BOOST_LIB_PREFIX_NAME}boost_system-${BOOST_LIB_EXT_NAME_RELEASE}
+			${BOOST_LIB_PREFIX_NAME}boost_system
 	    )
 
 	IF(WIN32)

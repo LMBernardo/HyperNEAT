@@ -185,7 +185,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             for (int b=0;b<0;b++)
             {
@@ -200,7 +200,7 @@ namespace HCUBE
     }
 
     void GoExperiment::populateSubstrate(
-        shared_ptr<NEAT::GeneticIndividual> individual,
+        boost::shared_ptr<NEAT::GeneticIndividual> individual,
         int substrateNum
         )
     {
@@ -256,8 +256,8 @@ namespace HCUBE
     float BEST_WIN_PERCENT = 0.0f;
 
 	void GoExperiment::preprocessIndividual(
-		shared_ptr<NEAT::GeneticGeneration> generation,
-		shared_ptr<NEAT::GeneticIndividual> individual
+		boost::shared_ptr<NEAT::GeneticGeneration> generation,
+		boost::shared_ptr<NEAT::GeneticIndividual> individual
 		)
 	{
 		int scalingType = int(NEAT::Globals::getSingleton()->getParameterValue("GoScalingType")+0.1);
@@ -288,10 +288,10 @@ namespace HCUBE
 		}
 	}
 
-    void GoExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void GoExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
       //boost::progress_timer t;
-        shared_ptr<NEAT::GeneticIndividual> individual = group.front();
+        boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
 		int scalingType = int(NEAT::Globals::getSingleton()->getParameterValue("GoScalingType")+0.1);
 
         boost::mutex::scoped_lock lock(fuegoMutex);
@@ -604,11 +604,11 @@ namespace HCUBE
                 //cout << "EVALUATION FINISHED\n";
 	}
 
-    void GoExperiment::processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual)
+    void GoExperiment::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         int prevNumGames = numGamesPerOpponent;
         numGamesPerOpponent = 1000;
-        shared_ptr<NEAT::GeneticGeneration> dummy;
+        boost::shared_ptr<NEAT::GeneticGeneration> dummy;
         group.push_back(individual);
         processGroup(dummy);
         group.pop_back();
@@ -618,7 +618,7 @@ namespace HCUBE
     }
 
 #ifndef HCUBE_NOGUI
-    void GoExperiment::createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual)
+    void GoExperiment::createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
     }
 
@@ -635,12 +635,12 @@ namespace HCUBE
         return experiment;
     }
 
-    void GoExperiment::resetGenerationData(shared_ptr<NEAT::GeneticGeneration> generation)
+    void GoExperiment::resetGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
         //generation->setUserData(new TicTacToeStats());
     }
 
-    void GoExperiment::addGenerationData(shared_ptr<NEAT::GeneticGeneration> generation,shared_ptr<NEAT::GeneticIndividual> individual)
+    void GoExperiment::addGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         //TicTacToeStats* ticTacToeStats = (TicTacToeStats*)generation->getUserData();
 

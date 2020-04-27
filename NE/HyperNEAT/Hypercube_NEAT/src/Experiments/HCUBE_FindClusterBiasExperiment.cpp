@@ -43,7 +43,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             for (int b=0;b<0;b++)
             {
@@ -180,7 +180,7 @@ namespace HCUBE
         delete[] nodeBiases;
     }
 
-    void FindClusterBiasExperiment::populateSubstrate(shared_ptr<const NEAT::GeneticIndividual> individual)
+    void FindClusterBiasExperiment::populateSubstrate(boost::shared_ptr<const NEAT::GeneticIndividual> individual)
     {
         cout << "Populating substrate...";
         NEAT::FastNetwork network = individual->spawnFastPhenotypeStack();
@@ -255,7 +255,7 @@ namespace HCUBE
     }
 
     double FindClusterBiasExperiment::processEvaluation(
-        shared_ptr<NEAT::GeneticIndividual> individual,
+        boost::shared_ptr<NEAT::GeneticIndividual> individual,
         wxDC *drawContext,
         int x1,
         int y1,
@@ -745,9 +745,9 @@ namespace HCUBE
         return max(0,30- ( (largestx-x1Big)*(largestx-x1Big) + (largesty-y1Big)*(largesty-y1Big) ) );
     }
 
-    void FindClusterBiasExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void FindClusterBiasExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
-        shared_ptr<NEAT::GeneticIndividual> individual = group.front();
+        boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
         /*{
             mutex::scoped_lock scoped_lock(*Globals::ioMutex);
             cout << "Starting Evaluation on object:" << this << endl;
@@ -837,7 +837,7 @@ namespace HCUBE
         }
     }
 
-    void FindClusterBiasExperiment::processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual)
+    void FindClusterBiasExperiment::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         /*{
             mutex::scoped_lock scoped_lock(*Globals::ioMutex);
@@ -1466,7 +1466,7 @@ namespace HCUBE
         return true;
     }
 
-    bool FindClusterBiasExperiment::handleMouseMotion(wxMouseEvent& event,wxDC &temp_dc,shared_ptr<NEAT::GeneticIndividual> individual)
+    bool FindClusterBiasExperiment::handleMouseMotion(wxMouseEvent& event,wxDC &temp_dc,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         wxPoint clickPoint = event.GetPosition();
 
@@ -1506,7 +1506,7 @@ namespace HCUBE
         return false;
     }
 
-    void FindClusterBiasExperiment::createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual)
+    void FindClusterBiasExperiment::createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         individual->setUserData(new FindClusterBiasStats());
 

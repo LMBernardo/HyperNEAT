@@ -19,9 +19,9 @@ namespace HCUBE
         bool cleanup;
         int experimentType;
 
-        shared_ptr<NEAT::GeneticPopulation> population;
+        boost::shared_ptr<NEAT::GeneticPopulation> population;
 
-        vector<shared_ptr<Experiment> > experiments;
+        vector<boost::shared_ptr<Experiment> > experiments;
 
         mutex* populationMutex;
 
@@ -43,12 +43,12 @@ namespace HCUBE
             cleanup = value;
         }
 
-        inline shared_ptr<NEAT::GeneticPopulation> getPopulation()
+        inline boost::shared_ptr<NEAT::GeneticPopulation> getPopulation()
         {
             return population;
         }
 
-        inline shared_ptr<Experiment> getExperiment()
+        inline boost::shared_ptr<Experiment> getExperiment()
         {
             return experiments[0];
         }
@@ -78,17 +78,17 @@ namespace HCUBE
             return started;
         }
 
-        inline shared_ptr<NEAT::GeneticGeneration> getGeneration(int generation)
+        inline boost::shared_ptr<NEAT::GeneticGeneration> getGeneration(int generation)
         {
             return population->getGeneration(generation);
         }
 
-        inline shared_ptr<NEAT::GeneticIndividual> getIndividual(int generation,int individual)
+        inline boost::shared_ptr<NEAT::GeneticIndividual> getIndividual(int generation,int individual)
         {
             return population->getIndividual(individual,generation);
         }
 
-        inline shared_ptr<NEAT::GeneticIndividual> getIndividual(int individual)
+        inline boost::shared_ptr<NEAT::GeneticIndividual> getIndividual(int individual)
         {
             return population->getIndividual(individual);
         }

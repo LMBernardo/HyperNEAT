@@ -145,7 +145,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,linkgenes,true,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,linkgenes,true,true,1.0));
 
             for (int b=0;b<0;b++)
             {
@@ -163,7 +163,7 @@ namespace HCUBE
     {}
 
     void CheckersExperimentOriginalFogel::populateSubstrate(
-        shared_ptr<NEAT::GeneticIndividual> individual,
+        boost::shared_ptr<NEAT::GeneticIndividual> individual,
         int substrateNum
     )
     {

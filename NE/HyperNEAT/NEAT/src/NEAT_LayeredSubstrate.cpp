@@ -104,7 +104,7 @@ void LayeredSubstrate<NetworkDataType>::setLayerInfo(LayeredSubstrateInfo layerI
 
 template< class NetworkDataType >
 void LayeredSubstrate<NetworkDataType>::populateSubstrate(
-    shared_ptr<NEAT::GeneticIndividual> individual
+    boost::shared_ptr<NEAT::GeneticIndividual> individual
     )
 {
   nameLookup.clear();

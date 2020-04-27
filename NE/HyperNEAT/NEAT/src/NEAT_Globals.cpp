@@ -40,7 +40,7 @@ namespace NEAT
         }
         for (int a=0;a<(int)linkGenesThisGeneration.size();a++)
         {
-            shared_ptr<GeneticLinkGene> link = linkGenesThisGeneration[a];
+            boost::shared_ptr<GeneticLinkGene> link = linkGenesThisGeneration[a];
             if (link->getFromNodeID()==testLink->getFromNodeID()&&link->getToNodeID()==testLink->getToNodeID())
             {
                 testLink->setID( link->getID() );
@@ -48,7 +48,7 @@ namespace NEAT
             }
         }
         testLink->setID(generateLinkID());
-        linkGenesThisGeneration.push_back(shared_ptr<GeneticLinkGene>(new GeneticLinkGene(*testLink)));
+        linkGenesThisGeneration.push_back(boost::shared_ptr<GeneticLinkGene>(new GeneticLinkGene(*testLink)));
     }
 
     void Globals::clearLinkHistory()

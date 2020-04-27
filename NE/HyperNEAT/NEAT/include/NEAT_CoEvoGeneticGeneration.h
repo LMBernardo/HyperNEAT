@@ -1,6 +1,8 @@
 #ifndef NEAT_COEVOGENETICGENERATION_H_INCLUDED
 #define NEAT_COEVOGENETICGENERATION_H_INCLUDED
 
+#include <vector>
+#include <boost/shared_ptr.hpp>
 #include "NEAT_GeneticGeneration.h"
 
 #ifdef EPLEX_INTERNAL
@@ -13,14 +15,14 @@ namespace NEAT
      */
     class CoEvoGeneticGeneration : public GeneticGeneration
     {
-        vector<shared_ptr<GeneticIndividual> > tests;
+        std::vector<boost::shared_ptr<GeneticIndividual> > tests;
 
-        vector< vector<bool> > testResults;
+        std::vector< std::vector<bool> > testResults;
 
         //gives the fitness of <index1> from playing <index2>
-        vector< vector<double> > testFitnesses;
+        std::vector< std::vector<double> > testFitnesses;
 
-        shared_ptr<CoEvoExperiment> experiment;
+        boost::shared_ptr<CoEvoExperiment> experiment;
 
     public:
 
@@ -29,8 +31,8 @@ namespace NEAT
          * *NOTE* Do not pass a regular GeneticGeneration into a CoEvoGeneticGeneration
          * produce function!
          */
-        virtual shared_ptr<GeneticGeneration> produceNextGeneration(
-            const vector<shared_ptr<GeneticIndividual> > &newIndividuals,
+        virtual boost::shared_ptr<GeneticGeneration> produceNextGeneration(
+            const std::vector<boost::shared_ptr<GeneticIndividual> > &newIndividuals,
             int _generationNumber
         );
 
@@ -38,7 +40,7 @@ namespace NEAT
          * Constructor: Creates an empty generation
          * \param _generationNumber Is the number of this generation
          */
-        NEAT_DLL_EXPORT CoEvoGeneticGeneration(int _generationNumber,shared_ptr<CoEvoExperiment> _experiment);
+        NEAT_DLL_EXPORT CoEvoGeneticGeneration(int _generationNumber,boost::shared_ptr<CoEvoExperiment> _experiment);
 
         NEAT_DLL_EXPORT CoEvoGeneticGeneration(const CoEvoGeneticGeneration &other);
 
@@ -52,7 +54,7 @@ namespace NEAT
          */
         NEAT_DLL_EXPORT CoEvoGeneticGeneration(
             TiXmlElement *generationElement,
-            shared_ptr<CoEvoExperiment> _experiment
+            boost::shared_ptr<CoEvoExperiment> _experiment
         );
 
         virtual inline const char *getTypeName()
@@ -64,12 +66,12 @@ namespace NEAT
 
         NEAT_DLL_EXPORT double getMaxTestFitness();
 
-        NEAT_DLL_EXPORT void replaceLowestTest(shared_ptr<GeneticIndividual> indToReplace);
+        NEAT_DLL_EXPORT void replaceLowestTest(boost::shared_ptr<GeneticIndividual> indToReplace);
 
-        NEAT_DLL_EXPORT shared_ptr<GeneticIndividual> addTest(shared_ptr<GeneticIndividual> test);
+        NEAT_DLL_EXPORT boost::shared_ptr<GeneticIndividual> addTest(boost::shared_ptr<GeneticIndividual> test);
 
         //TODO: Replace this hack for MPI with a better solution (maybe stream generations?)
-        NEAT_DLL_EXPORT void addTestHack(shared_ptr<GeneticIndividual> test)
+        NEAT_DLL_EXPORT void addTestHack(boost::shared_ptr<GeneticIndividual> test)
         {
             tests.push_back(test);
         }
@@ -81,7 +83,7 @@ namespace NEAT
             return (int)tests.size();
         }
 
-        inline shared_ptr<GeneticIndividual> getTest(int a)
+        inline boost::shared_ptr<GeneticIndividual> getTest(int a)
         {
             if (a>=(int)tests.size())
             {
@@ -92,7 +94,7 @@ namespace NEAT
             return tests[a];
         }
 
-        inline vector<shared_ptr<GeneticIndividual> >::iterator getTestIterator(int a)
+        inline std::vector<boost::shared_ptr<GeneticIndividual> >::iterator getTestIterator(int a)
         {
             return (tests.begin()+a);
         }
@@ -118,12 +120,12 @@ namespace NEAT
          */
         CoEvoGeneticGeneration(
             CoEvoGeneticGeneration *previousGeneration,
-            const vector<shared_ptr<GeneticIndividual> > &newIndividuals,
+            const std::vector<boost::shared_ptr<GeneticIndividual> > &newIndividuals,
             int _generationNumber,
-            const vector<shared_ptr<GeneticIndividual> > &newTests,
-            const vector< vector<bool> > &newTestResults,
-            const vector< vector<double> > &newTestFitnesses,
-            shared_ptr<CoEvoExperiment> _experiment
+            const std::vector<boost::shared_ptr<GeneticIndividual> > &newTests,
+            const std::vector< std::vector<bool> > &newTestResults,
+            const std::vector< std::vector<double> > &newTestFitnesses,
+            boost::shared_ptr<CoEvoExperiment> _experiment
         );
 
         bool getTestResult(int t1,int t2);

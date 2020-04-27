@@ -274,7 +274,7 @@ namespace NEAT
 		isValid();
     }
 
-    GeneticIndividual::GeneticIndividual(shared_ptr<GeneticIndividual> parent1,shared_ptr<GeneticIndividual> parent2,bool mate_multipoint_avg)
+    GeneticIndividual::GeneticIndividual(boost::shared_ptr<GeneticIndividual> parent1,boost::shared_ptr<GeneticIndividual> parent2,bool mate_multipoint_avg)
         :
     fitness(0),
         canReproduce(true)
@@ -447,7 +447,7 @@ namespace NEAT
         testMutate();
     }
 
-    GeneticIndividual::GeneticIndividual(shared_ptr<GeneticIndividual> parent1,bool tryMutation)
+    GeneticIndividual::GeneticIndividual(boost::shared_ptr<GeneticIndividual> parent1,bool tryMutation)
         :
     nodes(parent1->nodes),
         links(parent1->links),
@@ -814,7 +814,7 @@ namespace NEAT
         cout << endl;
     }
 
-    double GeneticIndividual::getCompatibility(shared_ptr<GeneticIndividual> other)
+    double GeneticIndividual::getCompatibility(boost::shared_ptr<GeneticIndividual> other)
     {
         GeneticIndividual *ind1 = this;
         GeneticIndividual *ind2 = other.get();

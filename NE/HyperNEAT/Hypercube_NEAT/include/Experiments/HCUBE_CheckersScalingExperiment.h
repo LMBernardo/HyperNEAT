@@ -20,7 +20,7 @@ namespace HCUBE
         NEAT::FastNetwork<CheckersNEATDatatype> minisubstrates[2];
 #endif
         int currentSubstrateIndex;
-        shared_ptr<const NEAT::GeneticIndividual> minisubstrateIndividuals[2];
+        boost::shared_ptr<const NEAT::GeneticIndividual> minisubstrateIndividuals[2];
 
         int mininumNodesX[2];
         int mininumNodesY[2];
@@ -45,13 +45,13 @@ namespace HCUBE
         void generateMiniSubstrate(int substrateNum=0);
 
         virtual void populateMiniSubstrate(
-            shared_ptr<const NEAT::GeneticIndividual> individual,
+            boost::shared_ptr<const NEAT::GeneticIndividual> individual,
             int substrateNum=0
         );
 
-        virtual void processGroup(shared_ptr<NEAT::GeneticGeneration> generation);
+        virtual void processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation);
 
-        virtual void processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual);
+        virtual void processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual);
 
         virtual inline bool performUserEvaluations()
         {

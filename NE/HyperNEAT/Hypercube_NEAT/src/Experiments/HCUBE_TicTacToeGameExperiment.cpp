@@ -42,7 +42,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             for (int b=0;b<0;b++)
             {
@@ -200,7 +200,7 @@ namespace HCUBE
         delete[] nodeBiases;
     }
 
-    void TicTacToeGameExperiment::populateSubstrate(shared_ptr<NEAT::GeneticIndividual> individual)
+    void TicTacToeGameExperiment::populateSubstrate(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         NEAT::FastNetwork<double> network = individual->spawnFastPhenotypeStack<double>();
 
@@ -578,16 +578,16 @@ namespace HCUBE
         return 5.0;
     }
 
-    void TicTacToeGameExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void TicTacToeGameExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
-        shared_ptr<NEAT::GeneticIndividual> individual = group.front();
+        boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
 
         //You get 10 points just for entering the game, wahooo!
         individual->setFitness(10);
 
         populateSubstrate(individual);
 
-        shared_ptr<TicTacToeStats> individualStats = shared_ptr<TicTacToeStats>(new TicTacToeStats());
+        boost::shared_ptr<TicTacToeStats> individualStats = boost::shared_ptr<TicTacToeStats>(new TicTacToeStats());
 
         searchTree.getFullResults(individualStats.get(),substrate,numNodesX,numNodesY,nameLookup);
 
@@ -599,14 +599,14 @@ namespace HCUBE
         individual->setUserData(individualStats->toString());
 	}
 
-    void TicTacToeGameExperiment::processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual)
+    void TicTacToeGameExperiment::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         //You get 10 points just for entering the game, wahooo!
         individual->setFitness(10);
 
         populateSubstrate(individual);
 
-        shared_ptr<TicTacToeStats> individualStats = shared_ptr<TicTacToeStats>(new TicTacToeStats());
+        boost::shared_ptr<TicTacToeStats> individualStats = boost::shared_ptr<TicTacToeStats>(new TicTacToeStats());
 
         searchTree.getFullResults(individualStats.get(),substrate,numNodesX,numNodesY,nameLookup);
 
@@ -619,7 +619,7 @@ namespace HCUBE
 	}
 
 #ifndef HCUBE_NOGUI
-    void TicTacToeGameExperiment::createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual)
+    void TicTacToeGameExperiment::createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         base_generator_type generator = base_generator_type(static_cast<unsigned int>(std::clock()%1000000000));
 
@@ -651,13 +651,13 @@ namespace HCUBE
         return experiment;
     }
 
-    void TicTacToeGameExperiment::resetGenerationData(shared_ptr<NEAT::GeneticGeneration> generation)
+    void TicTacToeGameExperiment::resetGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
 		TicTacToeStats stats;
         generation->setUserData(stats.toString());
     }
 
-    void TicTacToeGameExperiment::addGenerationData(shared_ptr<NEAT::GeneticGeneration> generation,shared_ptr<NEAT::GeneticIndividual> individual)
+    void TicTacToeGameExperiment::addGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         TicTacToeStats ticTacToeStats = TicTacToeStats(generation->getUserData());
 

@@ -31,18 +31,18 @@ namespace HCUBE
         virtual NEAT::GeneticPopulation* createInitialPopulation(int populationSize);
 
         double processEvaluation(
-            shared_ptr<NEAT::GeneticIndividual> individual,
+            boost::shared_ptr<NEAT::GeneticIndividual> individual,
             wxDC *drawContext
         );
 
-        virtual void processGroup(shared_ptr<NEAT::GeneticGeneration> generation);
+        virtual void processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation);
 
 #ifndef HCUBE_NOGUI
         virtual bool handleMousePress(wxMouseEvent& event,wxSize &bitmapSize);
 
-        virtual void createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual);
+        virtual void createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual);
 
-        virtual bool handleMouseMotion(wxMouseEvent& event,wxDC &temp_dc,shared_ptr<NEAT::GeneticIndividual> individual);
+        virtual bool handleMouseMotion(wxMouseEvent& event,wxDC &temp_dc,boost::shared_ptr<NEAT::GeneticIndividual> individual);
 #endif
 
         virtual inline bool performUserEvaluations()

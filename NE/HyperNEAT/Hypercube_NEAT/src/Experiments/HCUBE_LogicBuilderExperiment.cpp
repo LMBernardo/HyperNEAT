@@ -40,7 +40,7 @@ namespace HCUBE
 
 		for (int a=0;a<populationSize;a++)
 		{
-			shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+			boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
 			for (int b=0;b<0;b++)
 			{
@@ -64,7 +64,7 @@ namespace HCUBE
 	}
 
 	void LogicBuilderExperiment::populateSubstrate(
-		shared_ptr<NEAT::GeneticIndividual> individual
+		boost::shared_ptr<NEAT::GeneticIndividual> individual
 		)
 	{
 		if (substrateIndividual==individual)
@@ -78,12 +78,12 @@ namespace HCUBE
 		NEAT::FastNetwork<float> network = individual->spawnFastPhenotypeStack<float>();
 	}
 
-	void LogicBuilderExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+	void LogicBuilderExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
 	{
 		populateSubstrate(group[0]);
 	}
 
-	void LogicBuilderExperiment::processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual)
+	void LogicBuilderExperiment::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
 	{
 	}
 
@@ -94,12 +94,12 @@ namespace HCUBE
 		return experiment;
 	}
 
-	void LogicBuilderExperiment::resetGenerationData(shared_ptr<NEAT::GeneticGeneration> generation)
+	void LogicBuilderExperiment::resetGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation)
 	{
 		//generation->setUserData(new TicTacToeStats());
 	}
 
-	void LogicBuilderExperiment::addGenerationData(shared_ptr<NEAT::GeneticGeneration> generation,shared_ptr<NEAT::GeneticIndividual> individual)
+	void LogicBuilderExperiment::addGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation,boost::shared_ptr<NEAT::GeneticIndividual> individual)
 	{
 		//TicTacToeStats* ticTacToeStats = (TicTacToeStats*)generation->getUserData();
 

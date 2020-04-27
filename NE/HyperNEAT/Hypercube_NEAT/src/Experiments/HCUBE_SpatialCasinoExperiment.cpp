@@ -74,7 +74,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             for (int b=0;b<3;b++)
             {
@@ -87,9 +87,9 @@ namespace HCUBE
         return population;
     }
 
-    void SpatialCasinoExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void SpatialCasinoExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
-        shared_ptr<NEAT::GeneticIndividual> individual = group.front();
+        boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
 
         substrate = individual->spawnFastPhenotypeStack<double>();
 
@@ -319,7 +319,7 @@ namespace HCUBE
         individual->setFitness(max(10.0,individual->getFitness()));
     }
 
-    void SpatialCasinoExperiment::processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual)
+    void SpatialCasinoExperiment::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         substrate = individual->spawnFastPhenotypeStack<double>();
 
@@ -375,12 +375,12 @@ namespace HCUBE
         return false; //mouse presses can't affect the image
     }
 
-    bool SpatialCasinoExperiment::handleMouseMotion(wxMouseEvent& event,wxDC &temp_dc,shared_ptr<NEAT::GeneticIndividual> individual)
+    bool SpatialCasinoExperiment::handleMouseMotion(wxMouseEvent& event,wxDC &temp_dc,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         return false;
     }
 
-    void SpatialCasinoExperiment::createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual)
+    void SpatialCasinoExperiment::createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
     }
 #endif

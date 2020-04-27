@@ -91,7 +91,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             for (int b=0;b<0;b++)
             {
@@ -310,7 +310,7 @@ namespace HCUBE
     }
 
     void CheckersScalingExperiment::populateMiniSubstrate(
-        shared_ptr<const NEAT::GeneticIndividual> individual,
+        boost::shared_ptr<const NEAT::GeneticIndividual> individual,
         int substrateNum
     )
     {
@@ -619,9 +619,9 @@ namespace HCUBE
 
 #define SCALE_UP_GENERATION (100)
 
-    void CheckersScalingExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void CheckersScalingExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
-        shared_ptr<NEAT::GeneticIndividual> individual = group.front();
+        boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
 
         if(generation->getGenerationNumber()==SCALE_UP_GENERATION)
         {
@@ -821,7 +821,7 @@ namespace HCUBE
         //cout << "Trial over! score: " << individual->getFitness() << "\n";
     }
 
-    void CheckersScalingExperiment::processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual)
+    void CheckersScalingExperiment::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         cout << "Performing Posthoc process\n";
         //cout << "INDIVIDUAL FITNESS BEFORE: " << individual->getFitness() << endl;
@@ -832,7 +832,7 @@ namespace HCUBE
 
         for (int a=0;a<100;a++)
         {
-            shared_ptr<GeneticGeneration> dummy;
+            boost::shared_ptr<GeneticGeneration> dummy;
             tmpExperiment->setChanceToMakeSecondBestMove(0.10);
             //Force CheckersExperiment processGroup
             tmpExperiment->processGroup(dummy);

@@ -36,7 +36,7 @@
 #include "Experiments/HCUBE_ImageCompressionExperiment.h"
 #include "Experiments/HCUBE_BinaryCompressionExperiment.h"
 #include "Experiments/HCUBE_FindClusterBPExperiment.h"
-#include "Experiments/HCUBE_GoExperiment.h"
+// #include "Experiments/HCUBE_GoExperiment.h"
 #endif
 #include "Experiments/HCUBE_CheckersExperimentSubstrateGeom.h"
 
@@ -82,32 +82,32 @@ namespace HCUBE
             {
 #ifdef EPLEX_INTERNAL
             case EXPERIMENT_SIMPLE_IMAGE:
-                experiments.push_back(shared_ptr<Experiment>(new SimpleImageExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new SimpleImageExperiment("",a)));
                 break;
 #endif
             case EXPERIMENT_TIC_TAC_TOE:
-                experiments.push_back(shared_ptr<Experiment>(new TicTacToeExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new TicTacToeExperiment("",a)));
                 break;
             case EXPERIMENT_TIC_TAC_TOE_GAME:
-                experiments.push_back(shared_ptr<Experiment>(new TicTacToeGameExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new TicTacToeGameExperiment("",a)));
                 break;
             case EXPERIMENT_TIC_TAC_TOE_NO_GEOM_GAME:
-                experiments.push_back(shared_ptr<Experiment>(new TicTacToeGameNoGeomExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new TicTacToeGameNoGeomExperiment("",a)));
                 break;
 #ifdef EPLEX_INTERNAL
             case EXPERIMENT_ROBOT_ARM:
-                experiments.push_back(shared_ptr<Experiment>(new RobotArmExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new RobotArmExperiment("",a)));
                 break;
             case EXPERIMENT_ROBOT_ARM_LATTICE:
-                experiments.push_back(shared_ptr<Experiment>(new RobotArmLatticeExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new RobotArmLatticeExperiment("",a)));
                 break;
 #endif
             case EXPERIMENT_XOR:
-                experiments.push_back(shared_ptr<Experiment>(new XorExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new XorExperiment("",a)));
                 break;
 #ifdef EPLEX_INTERNAL
             case EXPERIMENT_COXOR:
-                experiments.push_back(shared_ptr<Experiment>(new XorCoExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new XorCoExperiment("",a)));
                 break;
             case EXPERIMENT_MAKE_MAZE:
                 //experimentRun.setExperiment(new MakeMazeExperiment());
@@ -120,67 +120,67 @@ namespace HCUBE
                 break;
 #endif
             case EXPERIMENT_FIND_POINT_EXPERIMENT:
-                experiments.push_back(shared_ptr<Experiment>(new FindPointExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new FindPointExperiment("",a)));
                 break;
             case EXPERIMENT_FIND_CLUSTER_EXPERIMENT:
-                experiments.push_back(shared_ptr<Experiment>(new FindClusterExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new FindClusterExperiment("",a)));
                 break;
             case EXPERIMENT_FIND_CLUSTER_NO_GEOM_EXPERIMENT:
-                experiments.push_back(shared_ptr<Experiment>(new FindClusterNoGeomExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new FindClusterNoGeomExperiment("",a)));
                 break;
 #ifdef EPLEX_INTERNAL
             case EXPERIMENT_SPATIAL_CPPN:
-                experiments.push_back(shared_ptr<Experiment>(new SpatialExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new SpatialExperiment("",a)));
                 break;
 #endif
             case EXPERIMENT_CHECKERS:
-                experiments.push_back(shared_ptr<Experiment>(new CheckersExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new CheckersExperiment("",a)));
                 break;
             case EXPERIMENT_CHECKERS_NO_GEOM:
-                experiments.push_back(shared_ptr<Experiment>(new CheckersExperimentNoGeom("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new CheckersExperimentNoGeom("",a)));
                 break;
 #ifdef EPLEX_INTERNAL
             case EXPERIMENT_SCALABLE_CHECKERS:
-                experiments.push_back(shared_ptr<Experiment>(new CheckersScalingExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new CheckersScalingExperiment("",a)));
                 break;
             case EXPERIMENT_CHECKERS_FOGEL:
-                experiments.push_back(shared_ptr<Experiment>(new CheckersExperimentFogel("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new CheckersExperimentFogel("",a)));
                 break;
 #endif
             case EXPERIMENT_CHECKERS_ORIGINAL_FOGEL:
-                experiments.push_back(shared_ptr<Experiment>(new CheckersExperimentOriginalFogel("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new CheckersExperimentOriginalFogel("",a)));
                 break;
 #ifdef EPLEX_INTERNAL
             case EXPERIMENT_CHECKERS_PRUNING:
-                experiments.push_back(shared_ptr<Experiment>(new CheckersExperimentPruning("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new CheckersExperimentPruning("",a)));
                 break;
             case EXPERIMENT_COCHECKERS:
-                experiments.push_back(shared_ptr<Experiment>(new CoCheckersExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new CoCheckersExperiment("",a)));
                 break;
             case EXPERIMENT_OTHELLO:
-                experiments.push_back(shared_ptr<Experiment>(new OthelloExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new OthelloExperiment("",a)));
                 break;
             case EXPERIMENT_OTHELLO_CO:
-                experiments.push_back(shared_ptr<Experiment>(new OthelloCoExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new OthelloCoExperiment("",a)));
                 break;
             case EXPERIMENT_IMAGE_COMPRESSION:
-                experiments.push_back(shared_ptr<Experiment>(new ImageCompressionExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new ImageCompressionExperiment("",a)));
                 break;
             case EXPERIMENT_BINARY_COMPRESSION:
-                experiments.push_back(shared_ptr<Experiment>(new BinaryCompressionExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new BinaryCompressionExperiment("",a)));
                 break;
             case EXPERIMENT_SPATIAL_CASINO:
-                experiments.push_back(shared_ptr<Experiment>(new SpatialCasinoExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new SpatialCasinoExperiment("",a)));
                 break;
             case EXPERIMENT_FIND_CLUSTER_BP:
-                experiments.push_back(shared_ptr<Experiment>(new FindClusterBPExperiment("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new FindClusterBPExperiment("",a)));
                 break;
             case EXPERIMENT_GO:
-                experiments.push_back(shared_ptr<Experiment>(new GoExperiment("",a)));
+                // experiments.push_back(boost::shared_ptr<Experiment>(new GoExperiment("",a)));
                 break;
 #endif
             case EXPERIMENT_CHECKERS_SUBSTRATE_GEOM:
-                experiments.push_back(shared_ptr<Experiment>(new CheckersExperimentSubstrateGeom("",a)));
+                experiments.push_back(boost::shared_ptr<Experiment>(new CheckersExperimentSubstrateGeom("",a)));
                 break;
             default:
                 cout << string("ERROR: Unknown Experiment Type!\n");
@@ -196,7 +196,7 @@ namespace HCUBE
         if (iequals(populationString,""))
         {
             int popSize = (int)NEAT::Globals::getSingleton()->getParameterValue("PopulationSize");
-            population = shared_ptr<NEAT::GeneticPopulation>(
+            population = boost::shared_ptr<NEAT::GeneticPopulation>(
                 experiments[0]->createInitialPopulation(popSize)
                 );
         }
@@ -207,10 +207,10 @@ namespace HCUBE
             {
                 if (dynamic_cast<NEAT::CoEvoExperiment*>(experiments[0].get()))
                 {
-                    population = shared_ptr<NEAT::GeneticPopulation>(
+                    population = boost::shared_ptr<NEAT::GeneticPopulation>(
                         new NEAT::GeneticPopulation(
                             populationString,
-                            shared_ptr<NEAT::CoEvoExperiment>((NEAT::CoEvoExperiment*)experiments[0]->clone())
+                            boost::shared_ptr<NEAT::CoEvoExperiment>((NEAT::CoEvoExperiment*)experiments[0]->clone())
                             )
                         );
                     return;
@@ -222,7 +222,7 @@ namespace HCUBE
             }
 #endif
 
-            population = shared_ptr<NEAT::GeneticPopulation>(
+            population = boost::shared_ptr<NEAT::GeneticPopulation>(
                 new NEAT::GeneticPopulation(populationString)
                 );
         }
@@ -366,7 +366,7 @@ namespace HCUBE
 	void ExperimentRun::preprocessPopulation()
 	{
 		cout << "PREPROCESSING POPULATION\n";
-        shared_ptr<NEAT::GeneticGeneration> generation = population->getGeneration();
+        boost::shared_ptr<NEAT::GeneticGeneration> generation = population->getGeneration();
 
 		for(int a=0;a<generation->getIndividualCount();a++)
 		{
@@ -376,7 +376,7 @@ namespace HCUBE
 
     void ExperimentRun::evaluatePopulation()
     {
-        shared_ptr<NEAT::GeneticGeneration> generation = population->getGeneration();
+        boost::shared_ptr<NEAT::GeneticGeneration> generation = population->getGeneration();
         //Randomize population order for evaluation
         generation->randomizeIndividualOrder();
 
@@ -484,7 +484,7 @@ namespace HCUBE
 #endif
 
         cout << "Resetting generation data...\n";
-        shared_ptr<NEAT::GeneticGeneration> generation = population->getGeneration();
+        boost::shared_ptr<NEAT::GeneticGeneration> generation = population->getGeneration();
         experiments[0]->resetGenerationData(generation);
 
         for (int a=0;a<population->getIndividualCount();a++)

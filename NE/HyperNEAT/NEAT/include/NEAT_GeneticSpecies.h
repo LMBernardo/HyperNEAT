@@ -1,6 +1,8 @@
 #ifndef __GENETICSPECIES_H__
 #define __GENETICSPECIES_H__
 
+#include <boost/shared_ptr.hpp>
+#include <vector>
 #include "NEAT_Globals.h"
 #include "tinyxmlplus.h"
 
@@ -11,12 +13,12 @@ namespace NEAT
      */
     class GeneticSpecies
     {
-        shared_ptr<GeneticIndividual> bestIndividualEver;
+        boost::shared_ptr<GeneticIndividual> bestIndividualEver;
 
         int ID;
 
         //Individuals currently in the species.
-        vector<shared_ptr<GeneticIndividual> > currentIndividuals;
+        std::vector<boost::shared_ptr<GeneticIndividual> > currentIndividuals;
 
         double multiplier;
 
@@ -32,16 +34,16 @@ namespace NEAT
 
         double oldAverageFitness;
     public:
-        NEAT_DLL_EXPORT GeneticSpecies(shared_ptr<GeneticIndividual> firstIndividual);
+        NEAT_DLL_EXPORT GeneticSpecies(boost::shared_ptr<GeneticIndividual> firstIndividual);
 
         NEAT_DLL_EXPORT virtual ~GeneticSpecies();
 
-        inline shared_ptr<GeneticIndividual> getBestIndividual()
+        inline boost::shared_ptr<GeneticIndividual> getBestIndividual()
         {
             return bestIndividualEver;
         }
 
-        NEAT_DLL_EXPORT void setBestIndividual(shared_ptr<GeneticIndividual> ind);
+        NEAT_DLL_EXPORT void setBestIndividual(boost::shared_ptr<GeneticIndividual> ind);
 
         //This is a hack which is important to make sure the best overall species
         //doesn't get hit with the no-improvement penalty
@@ -75,7 +77,7 @@ namespace NEAT
             currentIndividuals.clear();
         }
 
-        inline void addIndividual(shared_ptr<GeneticIndividual> ind)
+        inline void addIndividual(boost::shared_ptr<GeneticIndividual> ind)
         {
             currentIndividuals.push_back(ind);
         }
@@ -126,7 +128,7 @@ namespace NEAT
 
         NEAT_DLL_EXPORT void incrementAge();
 
-        NEAT_DLL_EXPORT void makeBabies(vector<shared_ptr<GeneticIndividual> > &babies);
+        NEAT_DLL_EXPORT void makeBabies(std::vector<boost::shared_ptr<GeneticIndividual> > &babies);
 
         NEAT_DLL_EXPORT void dump(TiXmlElement *speciesElement);
     };

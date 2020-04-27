@@ -24,7 +24,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             for (int b=0;b<0;b++)
             {
@@ -91,9 +91,9 @@ namespace HCUBE
         return population;
     }
 
-    void FindPointExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void FindPointExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
-        shared_ptr<NEAT::GeneticIndividual> individual = group.front();
+        boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
         /*{
             cout << "Starting Evaluation on object:" << this << endl;
             cout << "Running on individual " << individual << endl;
@@ -203,7 +203,7 @@ namespace HCUBE
     }
 
 #ifndef HCUBE_NOGUI
-    void FindPointExperiment::createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual)
+    void FindPointExperiment::createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {}
 #endif
 

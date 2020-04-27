@@ -41,7 +41,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             for (int b=0;b<0;b++)
             {
@@ -55,7 +55,7 @@ namespace HCUBE
     }
 
     double SpatialExperiment::processEvaluation(
-        shared_ptr<NEAT::GeneticIndividual> individual,
+        boost::shared_ptr<NEAT::GeneticIndividual> individual,
         wxDC *drawContext
     )
     {
@@ -232,9 +232,9 @@ namespace HCUBE
         return 0;
     }
 
-    void SpatialExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void SpatialExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
-        shared_ptr<NEAT::GeneticIndividual> individual = group.front();
+        boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
         /*{
             cout << "Starting Evaluation on object:" << this << endl;
             cout << "Running on individual " << individual << endl;
@@ -366,7 +366,7 @@ namespace HCUBE
         return false; //mouse presses can't affect the image
     }
 
-    bool SpatialExperiment::handleMouseMotion(wxMouseEvent& event,wxDC &temp_dc,shared_ptr<NEAT::GeneticIndividual> individual)
+    bool SpatialExperiment::handleMouseMotion(wxMouseEvent& event,wxDC &temp_dc,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         wxPoint clickPoint = event.GetPosition();
 
@@ -380,7 +380,7 @@ namespace HCUBE
         return false;
     }
 
-    void SpatialExperiment::createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual)
+    void SpatialExperiment::createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         cout << "CREATING IMAGE!!!\n";
         try

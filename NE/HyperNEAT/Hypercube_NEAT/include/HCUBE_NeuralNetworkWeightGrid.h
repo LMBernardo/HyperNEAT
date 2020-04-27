@@ -27,7 +27,7 @@ namespace HCUBE
     {
     public:
     protected:
-        shared_ptr<NEAT::GeneticIndividual> individual;
+        boost::shared_ptr<NEAT::GeneticIndividual> individual;
 
         bool readOnly;
 
@@ -39,7 +39,7 @@ namespace HCUBE
                                  long style = wxWANTS_CHARS,
                                  const wxString& name = wxGridNameStr );
 
-        void setTarget(shared_ptr<NEAT::GeneticIndividual> _individual);
+        void setTarget(boost::shared_ptr<NEAT::GeneticIndividual> _individual);
 
         inline void setReadOnly(bool value)
         {

@@ -15,7 +15,7 @@ namespace HCUBE
         NEAT::LayeredSubstrate<float> substrate;
 #endif
 
-		shared_ptr<const NEAT::GeneticIndividual> substrateIndividual;
+		boost::shared_ptr<const NEAT::GeneticIndividual> substrateIndividual;
 
         signed char* rawdata;
         float* rawdataNormalized;
@@ -31,15 +31,15 @@ namespace HCUBE
         virtual NEAT::GeneticPopulation* createInitialPopulation(int populationSize);
 
         virtual void populateSubstrate(
-            shared_ptr<NEAT::GeneticIndividual> individual
+            boost::shared_ptr<NEAT::GeneticIndividual> individual
         );
 
-        virtual void processGroup(shared_ptr<NEAT::GeneticGeneration> generation);
+        virtual void processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation);
 
-        virtual void processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual);
+        virtual void processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual);
 /*
 #ifndef HCUBE_NOGUI
-        virtual void createIndividualBinary(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual);
+        virtual void createIndividualBinary(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual);
 
         virtual bool handleMousePress(wxMouseEvent& event,wxSize &bitmapSize);
 #endif

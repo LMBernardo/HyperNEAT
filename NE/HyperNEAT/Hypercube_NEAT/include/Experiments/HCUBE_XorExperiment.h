@@ -17,12 +17,12 @@ namespace HCUBE
 
         virtual NEAT::GeneticPopulation* createInitialPopulation(int populationSize);
 
-        virtual void processGroup(shared_ptr<NEAT::GeneticGeneration> generation);
+        virtual void processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation);
 
-        virtual void processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual);
+        virtual void processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual);
 
 #ifndef HCUBE_NOGUI
-        virtual void createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual)
+        virtual void createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual)
         {}
 #endif
 
@@ -43,7 +43,7 @@ namespace HCUBE
         /**
          * handleMouseMotion: returns true if the window needs to be refreshed
          */
-        virtual bool handleMouseMotion(wxMouseEvent& event,wxDC &temp_dc,shared_ptr<NEAT::GeneticIndividual> individual)
+        virtual bool handleMouseMotion(wxMouseEvent& event,wxDC &temp_dc,boost::shared_ptr<NEAT::GeneticIndividual> individual)
         {
             return false;
         }
@@ -82,10 +82,10 @@ namespace HCUBE
 
         virtual Experiment* clone();
 
-        virtual void resetGenerationData(shared_ptr<NEAT::GeneticGeneration> generation)
+        virtual void resetGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation)
         {}
 
-        virtual void addGenerationData(shared_ptr<NEAT::GeneticGeneration> generation,shared_ptr<NEAT::GeneticIndividual> individual)
+        virtual void addGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation,boost::shared_ptr<NEAT::GeneticIndividual> individual)
         {}
 
     };

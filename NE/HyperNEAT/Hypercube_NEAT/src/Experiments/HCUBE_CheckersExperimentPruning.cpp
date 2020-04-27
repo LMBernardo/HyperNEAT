@@ -176,7 +176,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             for (int b=0;b<0;b++)
             {
@@ -191,7 +191,7 @@ namespace HCUBE
     }
 
     void CheckersExperimentPruning::populateSubstrate(
-        shared_ptr<NEAT::GeneticIndividual> individual
+        boost::shared_ptr<NEAT::GeneticIndividual> individual
         )
     {
         if (substrateIndividual==individual)
@@ -344,10 +344,10 @@ namespace HCUBE
 
 int GIVE_OPPONENT_HANDICAP=false;
 
-    void CheckersExperimentPruning::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void CheckersExperimentPruning::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
         //cout << "Processing evaluation...\n";
-        shared_ptr<NEAT::GeneticIndividual> individual = group.front();
+        boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
         //You get 10 points just for entering the game, wahooo!
         individual->setFitness(10);
         numHandCodedStreams=0;
@@ -524,7 +524,7 @@ int GIVE_OPPONENT_HANDICAP=false;
 		cout << "WINS: " << stats.wins << endl;
     }
 
-    void CheckersExperimentPruning::processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual)
+    void CheckersExperimentPruning::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
 	//GIVE_OPPONENT_HANDICAP=false;
 #if DO_REGULAR_RUN_FOR_POSTHOC
@@ -538,7 +538,7 @@ int GIVE_OPPONENT_HANDICAP=false;
 
         chanceToMakeSecondBestMove=0.0;
         //dumpEvaluationImages = true;
-        shared_ptr<GeneticGeneration> dummy;
+        boost::shared_ptr<GeneticGeneration> dummy;
         processGroup(dummy);
         //dumpEvaluationImages = false;
 
@@ -547,11 +547,11 @@ int GIVE_OPPONENT_HANDICAP=false;
         //cout << "INDIVIDUAL FITNESS BEFORE: " << individual->getFitness() << endl;
         clearGroup();
         addIndividualToGroup(individual);
-        individual->setUserData(shared_ptr<CheckersStats>(new CheckersStats()));
+        individual->setUserData(boost::shared_ptr<CheckersStats>(new CheckersStats()));
 
         for (int a=0;a<100;a++)
         {
-            shared_ptr<GeneticGeneration> dummy;
+            boost::shared_ptr<GeneticGeneration> dummy;
             chanceToMakeSecondBestMove=0.10;
             processGroup(dummy);
             chanceToMakeSecondBestMove=0.0;
@@ -562,7 +562,7 @@ int GIVE_OPPONENT_HANDICAP=false;
     }
 
 #ifndef HCUBE_NOGUI
-    void CheckersExperimentPruning::createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual)
+    void CheckersExperimentPruning::createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
     }
 
@@ -580,12 +580,12 @@ int GIVE_OPPONENT_HANDICAP=false;
         return experiment;
     }
 
-    void CheckersExperimentPruning::resetGenerationData(shared_ptr<NEAT::GeneticGeneration> generation)
+    void CheckersExperimentPruning::resetGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
         //generation->setUserData(new TicTacToeStats());
     }
 
-    void CheckersExperimentPruning::addGenerationData(shared_ptr<NEAT::GeneticGeneration> generation,shared_ptr<NEAT::GeneticIndividual> individual)
+    void CheckersExperimentPruning::addGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         //TicTacToeStats* ticTacToeStats = (TicTacToeStats*)generation->getUserData();
 

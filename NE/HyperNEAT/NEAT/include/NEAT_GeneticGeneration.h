@@ -1,6 +1,7 @@
 #ifndef __GENETICGENERATION_H__
 #define __GENETICGENERATION_H__
 
+#include <boost/shared_ptr.hpp>
 #include "NEAT_Defines.h"
 
 #include "NEAT_GeneticIndividual.h"
@@ -18,7 +19,7 @@ namespace NEAT
     class GeneticGeneration
     {
     protected:
-        vector<shared_ptr<GeneticIndividual> > individuals;
+        vector<boost::shared_ptr<GeneticIndividual> > individuals;
 
         int generationNumber;
 
@@ -37,8 +38,8 @@ namespace NEAT
         /** produceNextGeneration:
          *  Creates the next generation.  Use this function instead of a constructor
          */
-        virtual shared_ptr<GeneticGeneration> produceNextGeneration(
-            const vector<shared_ptr<GeneticIndividual> > &newIndividuals,
+        virtual boost::shared_ptr<GeneticGeneration> produceNextGeneration(
+            const vector<boost::shared_ptr<GeneticIndividual> > &newIndividuals,
             int _generationNumber
         );
 
@@ -70,7 +71,7 @@ namespace NEAT
             return generationNumber;
         }
 
-        inline void addIndividual(shared_ptr<GeneticIndividual> i)
+        inline void addIndividual(boost::shared_ptr<GeneticIndividual> i)
         {
             individuals.push_back(i);
         }
@@ -80,7 +81,7 @@ namespace NEAT
             return (int)individuals.size();
         }
 
-        inline shared_ptr<GeneticIndividual> getIndividual(int a)
+        inline boost::shared_ptr<GeneticIndividual> getIndividual(int a)
         {
             if (a>=(int)individuals.size())
             {
@@ -91,7 +92,7 @@ namespace NEAT
             return individuals[a];
         }
 
-        inline vector<shared_ptr<GeneticIndividual> >::iterator getIndividualIterator(int a)
+        inline vector<boost::shared_ptr<GeneticIndividual> >::iterator getIndividualIterator(int a)
         {
             return (individuals.begin()+a);
         }
@@ -118,7 +119,7 @@ namespace NEAT
         /**
          * mateIndividuals: mates two individuals
          */
-        NEAT_DLL_EXPORT shared_ptr<GeneticIndividual> mateIndividuals(int i1,int i2);
+        NEAT_DLL_EXPORT boost::shared_ptr<GeneticIndividual> mateIndividuals(int i1,int i2);
 
         /**
          * getCompatibility: Returns the compatiblity between two individuals
@@ -127,7 +128,7 @@ namespace NEAT
 
         NEAT_DLL_EXPORT void sortByFitness();
 
-        NEAT_DLL_EXPORT virtual shared_ptr<GeneticIndividual> getGenerationChampion();
+        NEAT_DLL_EXPORT virtual boost::shared_ptr<GeneticIndividual> getGenerationChampion();
 
         /**
          * cleanup: Removes all individuals from this generation except the generation champion
@@ -149,7 +150,7 @@ namespace NEAT
          */
         GeneticGeneration(
             GeneticGeneration *previousGeneration,
-            const vector<shared_ptr<GeneticIndividual> > &newIndividuals,
+            const vector<boost::shared_ptr<GeneticIndividual> > &newIndividuals,
             int _generationNumber);
 
         void setAttributes(TiXmlElement *generationElement);

@@ -41,7 +41,7 @@ namespace HCUBE
         virtual ~UserEvaluationFrame()
         {}
 
-        void updateIndividual(shared_ptr<NEAT::GeneticIndividual> individual);
+        void updateIndividual(boost::shared_ptr<NEAT::GeneticIndividual> individual);
 
         void updateEvaluationPanels();
 
@@ -51,7 +51,7 @@ namespace HCUBE
 
         void handleMouseClick(wxMouseEvent& event);
 
-        void processHighResImage(shared_ptr<NEAT::GeneticIndividual> individual);
+        void processHighResImage(boost::shared_ptr<NEAT::GeneticIndividual> individual);
     };
 
 }

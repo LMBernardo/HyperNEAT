@@ -12,8 +12,8 @@ namespace HCUBE
     {
     public:
     protected:
-        shared_ptr<Experiment> experiment,backupExperiment;
-        shared_ptr<NEAT::GeneticIndividual> individual,backupIndividual;
+        boost::shared_ptr<Experiment> experiment,backupExperiment;
+        boost::shared_ptr<NEAT::GeneticIndividual> individual,backupIndividual;
         wxBitmap *outputBitmap;
         bool bitmapLocked;
 
@@ -34,7 +34,7 @@ namespace HCUBE
         /**
         * Gets the individual that is updating this evaluation panel
         */
-        inline shared_ptr<NEAT::GeneticIndividual> getIndividual()
+        inline boost::shared_ptr<NEAT::GeneticIndividual> getIndividual()
         {
             return individual;
         }
@@ -42,7 +42,7 @@ namespace HCUBE
         /**
         * Sets the individual that is updating this evaluation panel
         */
-        void setTarget(shared_ptr<Experiment> _experiment,shared_ptr<NEAT::GeneticIndividual> _individual);
+        void setTarget(boost::shared_ptr<Experiment> _experiment,boost::shared_ptr<NEAT::GeneticIndividual> _individual);
 
         /**
         * (Re)paint the panel as appropriate

@@ -181,7 +181,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             for (int b=0;b<0;b++)
             {
@@ -196,7 +196,7 @@ namespace HCUBE
     }
 
     void CheckersExperiment::populateSubstrate(
-        shared_ptr<NEAT::GeneticIndividual> individual,
+        boost::shared_ptr<NEAT::GeneticIndividual> individual,
         int substrateNum
         )
     {
@@ -2406,10 +2406,10 @@ namespace HCUBE
         }
 	}
 
-    void CheckersExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void CheckersExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
         //cout << "Processing evaluation...\n";
-        shared_ptr<NEAT::GeneticIndividual> individual = group.front();
+        boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
         //You get 10 points just for entering the game, wahooo!
         individual->setFitness(10);
 		numHandCodedStreams=0;
@@ -2988,7 +2988,7 @@ namespace HCUBE
         }
     }
 
-    void CheckersExperiment::processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual)
+    void CheckersExperiment::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
 #if DO_REGULAR_RUN_FOR_POSTHOC
         //cout << "INDIVIDUAL FITNESS BEFORE: " << individual->getFitness() << endl;
@@ -2998,18 +2998,18 @@ namespace HCUBE
 
         chanceToMakeSecondBestMove=0.0;
 		//dumpEvaluationImages = true;
-        shared_ptr<GeneticGeneration> dummy;
+        boost::shared_ptr<GeneticGeneration> dummy;
         processGroup(dummy);
 		//dumpEvaluationImages = false;
 #else
         //cout << "INDIVIDUAL FITNESS BEFORE: " << individual->getFitness() << endl;
         clearGroup();
         addIndividualToGroup(individual);
-        individual->setUserData(shared_ptr<CheckersStats>(new CheckersStats()));
+        individual->setUserData(boost::shared_ptr<CheckersStats>(new CheckersStats()));
 
         for (int a=0;a<100;a++)
         {
-            shared_ptr<GeneticGeneration> dummy;
+            boost::shared_ptr<GeneticGeneration> dummy;
             chanceToMakeSecondBestMove=0.10;
             processGroup(dummy);
             chanceToMakeSecondBestMove=0.0;
@@ -3019,7 +3019,7 @@ namespace HCUBE
     }
 
 #ifndef HCUBE_NOGUI
-    void CheckersExperiment::createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual)
+    void CheckersExperiment::createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         currentSubstrateIndex=0;
 
@@ -3353,12 +3353,12 @@ namespace HCUBE
         return experiment;
     }
 
-    void CheckersExperiment::resetGenerationData(shared_ptr<NEAT::GeneticGeneration> generation)
+    void CheckersExperiment::resetGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
         //generation->setUserData(new TicTacToeStats());
     }
 
-    void CheckersExperiment::addGenerationData(shared_ptr<NEAT::GeneticGeneration> generation,shared_ptr<NEAT::GeneticIndividual> individual)
+    void CheckersExperiment::addGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         //TicTacToeStats* ticTacToeStats = (TicTacToeStats*)generation->getUserData();
 

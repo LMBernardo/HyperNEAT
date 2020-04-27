@@ -16,7 +16,7 @@ namespace HCUBE
     NEAT::GeneticPopulation* XorCoExperiment::createInitialPopulation(int populationSize)
     {
         GeneticPopulation *population = new GeneticPopulation(
-            shared_ptr<XorCoExperiment>((XorCoExperiment*)this->clone())
+            boost::shared_ptr<XorCoExperiment>((XorCoExperiment*)this->clone())
         );
         vector<GeneticNodeGene> genes;
 
@@ -27,7 +27,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             for (int b=0;b<0;b++)
             {
@@ -37,13 +37,13 @@ namespace HCUBE
             population->addIndividual(individual);
         }
 
-        shared_ptr<NEAT::CoEvoGeneticGeneration> coEvoGeneration =
+        boost::shared_ptr<NEAT::CoEvoGeneticGeneration> coEvoGeneration =
             static_pointer_cast<NEAT::CoEvoGeneticGeneration>(population->getGeneration());
 
         //Create the tests
         for (int a=0;a<(population->getIndividualCount()/10);a++)
         {
-            shared_ptr<NEAT::GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<NEAT::GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             //This function clones the individual to make a test
             coEvoGeneration->addTest(individual);
@@ -63,8 +63,8 @@ namespace HCUBE
     }
 
     pair<double,double> XorCoExperiment::playGame(
-        shared_ptr<GeneticIndividual> firstPlayer,
-        shared_ptr<GeneticIndividual> secondPlayer
+        boost::shared_ptr<GeneticIndividual> firstPlayer,
+        boost::shared_ptr<GeneticIndividual> secondPlayer
     )
     {
         double fit1=10.0,fit2=10.0;
@@ -146,12 +146,12 @@ namespace HCUBE
         return pair<double,double>(fit1,fit2);
     }
 
-    void XorCoExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void XorCoExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
-        shared_ptr<NEAT::CoEvoGeneticGeneration> coEvoGeneration =
+        boost::shared_ptr<NEAT::CoEvoGeneticGeneration> coEvoGeneration =
             static_pointer_cast<NEAT::CoEvoGeneticGeneration>(generation);
 
-        shared_ptr<GeneticIndividual> individual = group[0];
+        boost::shared_ptr<GeneticIndividual> individual = group[0];
 
         individual->setFitness(0);
 
@@ -173,7 +173,7 @@ namespace HCUBE
         individual->setFitness(scaledFitness);
     }
 
-    void XorCoExperiment::processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual)
+    void XorCoExperiment::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         NEAT::FastNetwork<float> network = individual->spawnFastPhenotypeStack<float>();
 
@@ -217,7 +217,7 @@ namespace HCUBE
         return experiment;
     }
 
-    void XorCoExperiment::addGenerationData(shared_ptr<NEAT::GeneticGeneration> generation,shared_ptr<NEAT::GeneticIndividual> individual)
+    void XorCoExperiment::addGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
     }
 }

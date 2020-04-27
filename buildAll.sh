@@ -5,7 +5,7 @@ pushd tools/build/
 bash bootstrap.sh
 ./b2 install --prefix=$PWD/out
 popd
-tools/build/bjam --build-dir=$PWD/out address-model=64 toolset=gcc variant=debug,release link=static threading=multi runtime-link=shared cxxflags="-stdlib=libstdc++" -j16 --build-type=complete --layout=tagged stage || echo "Boost fails some targets, no biggie"
+tools/build/bjam --build-dir=$PWD/out address-model=64 toolset=gcc variant=debug,release link=static threading=multi runtime-link=shared cxxflags="" -j16 --build-type=complete --layout=tagged stage || echo "Boost fails some targets, no biggie"
 popd
 
 pushd zlib
@@ -27,24 +27,6 @@ popd
 popd
 
 pushd tinyxmldll
-mkdir -p build
-pushd build
-mkdir -p debug
-mkdir -p release
-pushd debug
-cmake -DCMAKE_BUILD_TYPE=Debug ../../
-# The first run forces release, so run again to override
-cmake -DCMAKE_BUILD_TYPE=Debug ../../
-make -j8
-popd
-pushd release
-cmake -DCMAKE_BUILD_TYPE=Release ../../
-make -j8
-popd
-popd
-popd
-
-pushd fuego-0.4
 mkdir -p build
 pushd build
 mkdir -p debug
@@ -103,12 +85,12 @@ mkdir -p build
 pushd build
 mkdir -p debug
 mkdir -p release
-pushd debug
-cmake -DCMAKE_BUILD_TYPE=Debug ../../
+#pushd debug
+#cmake -DCMAKE_BUILD_TYPE=Debug ../../
 # The first run forces release, so run again to override
-cmake -DCMAKE_BUILD_TYPE=Debug ../../
-make -j8
-popd
+#cmake -DCMAKE_BUILD_TYPE=Debug ../../
+#make -j8
+#popd
 pushd release
 cmake -DCMAKE_BUILD_TYPE=Release ../../
 make -j8

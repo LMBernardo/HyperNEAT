@@ -33,7 +33,7 @@ namespace NEAT
 
         int nodeCounter,linkCounter,speciesCounter;
 
-        vector<shared_ptr<GeneticLinkGene> > linkGenesThisGeneration;
+        vector<boost::shared_ptr<GeneticLinkGene> > linkGenesThisGeneration;
 
 		StackMap<string,double,4096> parameters;
 

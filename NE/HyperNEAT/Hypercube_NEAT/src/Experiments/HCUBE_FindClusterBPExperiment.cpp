@@ -61,7 +61,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             for (int b=0;b<0;b++)
             {
@@ -211,7 +211,7 @@ namespace HCUBE
         free(links);
     }
 
-    void FindClusterBPExperiment::populateSubstrate(shared_ptr<NEAT::GeneticIndividual> individual)
+    void FindClusterBPExperiment::populateSubstrate(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         //cout << "Populating substrate...";
         CPPNNetwork = individual->spawnFastPhenotypeStack<double>();
@@ -286,7 +286,7 @@ namespace HCUBE
     }
 
     double FindClusterBPExperiment::processEvaluation(
-        shared_ptr<NEAT::GeneticIndividual> individual,
+        boost::shared_ptr<NEAT::GeneticIndividual> individual,
         wxDC *drawContext,
         int x1,
         int y1,
@@ -777,9 +777,9 @@ namespace HCUBE
         return max(0,30- ( (largestx-x1Big)*(largestx-x1Big) + (largesty-y1Big)*(largesty-y1Big) ) );
     }
 
-    void FindClusterBPExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void FindClusterBPExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
-        shared_ptr<NEAT::GeneticIndividual> individual = group.front();
+        boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
         /*{
             cout << "Starting Evaluation on object:" << this << endl;
             cout << "Running on individual " << individual << endl;
@@ -787,7 +787,7 @@ namespace HCUBE
 
         //You get 10 points just for entering the game, wahooo!
         //individual->setFitness(10);
-        //individual->setUserData(shared_ptr<FindClusterBPStats>(new FindClusterBPStats()));
+        //individual->setUserData(boost::shared_ptr<FindClusterBPStats>(new FindClusterBPStats()));
 
         CPPNNetwork = individual->spawnFastPhenotypeStack<double>();
 
@@ -977,7 +977,7 @@ namespace HCUBE
         //}
     }
 
-    void FindClusterBPExperiment::processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual)
+    void FindClusterBPExperiment::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         /*{
             cout << "Starting Evaluation on object:" << this << endl;
@@ -1611,7 +1611,7 @@ namespace HCUBE
         return true;
     }
 
-    bool FindClusterBPExperiment::handleMouseMotion(wxMouseEvent& event,wxDC &temp_dc,shared_ptr<NEAT::GeneticIndividual> individual)
+    bool FindClusterBPExperiment::handleMouseMotion(wxMouseEvent& event,wxDC &temp_dc,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         wxPoint clickPoint = event.GetPosition();
 
@@ -1651,7 +1651,7 @@ namespace HCUBE
         return false;
     }
 
-    void FindClusterBPExperiment::createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual)
+    void FindClusterBPExperiment::createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         individual->setUserData(FindClusterBPStats().toString());
 

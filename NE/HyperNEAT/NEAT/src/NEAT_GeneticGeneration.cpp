@@ -16,7 +16,7 @@ namespace NEAT
 
     GeneticGeneration::GeneticGeneration(
         GeneticGeneration *previousGeneration,
-        const vector<shared_ptr<GeneticIndividual> > &newIndividuals,
+        const vector<boost::shared_ptr<GeneticIndividual> > &newIndividuals,
         int _generationNumber)
             :
             individuals(newIndividuals),
@@ -38,7 +38,7 @@ namespace NEAT
 
         do
         {
-            individuals.push_back(shared_ptr<GeneticIndividual>(new GeneticIndividual(individualElement)));
+            individuals.push_back(boost::shared_ptr<GeneticIndividual>(new GeneticIndividual(individualElement)));
 
             individualElement = individualElement->NextSiblingElement("Individual");
         }
@@ -62,12 +62,12 @@ namespace NEAT
         //cout << "done!\n";
     }
 
-    shared_ptr<GeneticGeneration> GeneticGeneration::produceNextGeneration(
-        const vector<shared_ptr<GeneticIndividual> > &newIndividuals,
+    boost::shared_ptr<GeneticGeneration> GeneticGeneration::produceNextGeneration(
+        const vector<boost::shared_ptr<GeneticIndividual> > &newIndividuals,
         int _generationNumber
         )
     {
-        return shared_ptr<GeneticGeneration>(
+        return boost::shared_ptr<GeneticGeneration>(
             new GeneticGeneration(
             this,
             newIndividuals,
@@ -156,7 +156,7 @@ namespace NEAT
     {
         setAttributes(generationElement);
 
-        shared_ptr<GeneticIndividual> bestIndividual=individuals[0];
+        boost::shared_ptr<GeneticIndividual> bestIndividual=individuals[0];
 
         for (int a=1;a<(int)individuals.size();a++)
         {
@@ -171,18 +171,18 @@ namespace NEAT
         generationElement->LinkEndChild(individualElement);
     }
 
-    shared_ptr<GeneticIndividual> GeneticGeneration::mateIndividuals(int i1,int i2)
+    boost::shared_ptr<GeneticIndividual> GeneticGeneration::mateIndividuals(int i1,int i2)
     {
-        shared_ptr<GeneticIndividual> ind1 = individuals[i1];
-        shared_ptr<GeneticIndividual> ind2 = individuals[i2];
+        boost::shared_ptr<GeneticIndividual> ind1 = individuals[i1];
+        boost::shared_ptr<GeneticIndividual> ind2 = individuals[i2];
 
-        return shared_ptr<GeneticIndividual>(new GeneticIndividual(ind1,ind2));
+        return boost::shared_ptr<GeneticIndividual>(new GeneticIndividual(ind1,ind2));
     }
 
     double GeneticGeneration::getCompatibility(int i1,int i2)
     {
-        shared_ptr<GeneticIndividual> ind1 = individuals[i1];
-        shared_ptr<GeneticIndividual> ind2 = individuals[i2];
+        boost::shared_ptr<GeneticIndividual> ind1 = individuals[i1];
+        boost::shared_ptr<GeneticIndividual> ind2 = individuals[i2];
 
         return ind1->getCompatibility(ind2);
     }
@@ -195,7 +195,7 @@ namespace NEAT
             {
                 if (individuals[b]->getFitness()<individuals[b+1]->getFitness())
                 {
-                    shared_ptr<GeneticIndividual> ind = individuals[b];
+                    boost::shared_ptr<GeneticIndividual> ind = individuals[b];
                     individuals[b] = individuals[b+1];
                     individuals[b+1] = ind;
                 }
@@ -206,9 +206,9 @@ namespace NEAT
     }
 
 //Gets the generation champion.  Based on unadjusted Fitness
-    shared_ptr<GeneticIndividual> GeneticGeneration::getGenerationChampion()
+    boost::shared_ptr<GeneticIndividual> GeneticGeneration::getGenerationChampion()
     {
-        shared_ptr<GeneticIndividual> bestIndividual;
+        boost::shared_ptr<GeneticIndividual> bestIndividual;
 
         for (int b=0;b<(int)individuals.size();b++)
         {

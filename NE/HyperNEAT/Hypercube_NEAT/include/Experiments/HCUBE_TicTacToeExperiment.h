@@ -58,18 +58,18 @@ namespace HCUBE
 
         void generateSubstrate();
 
-        void populateSubstrate(shared_ptr<const NEAT::GeneticIndividual> individual);
+        void populateSubstrate(boost::shared_ptr<const NEAT::GeneticIndividual> individual);
 
         double processEvaluation(
-            shared_ptr<NEAT::GeneticIndividual> individual,
+            boost::shared_ptr<NEAT::GeneticIndividual> individual,
             wxDC *drawContext,
             int boardState
         );
 
-        virtual void processGroup(shared_ptr<NEAT::GeneticGeneration> generation);
+        virtual void processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation);
 
 #ifndef HCUBE_NOGUI
-        virtual void createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual);
+        virtual void createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual);
 
         virtual bool handleMousePress(wxMouseEvent& event,wxSize &bitmapSize);
 #endif

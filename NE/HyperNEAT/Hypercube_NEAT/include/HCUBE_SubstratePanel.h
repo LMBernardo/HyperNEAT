@@ -10,7 +10,7 @@ namespace HCUBE
     public:
     protected:
         Experiment *experiment;
-        shared_ptr<const NEAT::GeneticIndividual> individual;
+        boost::shared_ptr<const NEAT::GeneticIndividual> individual;
         wxBitmap outputBitmap;
         int selectedRow,selectedCol;
 

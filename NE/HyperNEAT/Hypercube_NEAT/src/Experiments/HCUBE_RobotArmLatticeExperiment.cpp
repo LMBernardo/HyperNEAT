@@ -31,7 +31,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             for (int b=0;b<0;b++)
             {
@@ -44,12 +44,12 @@ namespace HCUBE
         return population;
     }
 
-    double RobotArmLatticeExperiment::processEvaluation(shared_ptr<const NEAT::GeneticIndividual> individual,double x,double y)
+    double RobotArmLatticeExperiment::processEvaluation(boost::shared_ptr<const NEAT::GeneticIndividual> individual,double x,double y)
     {
         return processEvaluation(individual,NULL,x,y);
     }
 
-    double RobotArmLatticeExperiment::processEvaluation(shared_ptr<const NEAT::GeneticIndividual> individual,wxDC *drawContext,double realx,double realy)
+    double RobotArmLatticeExperiment::processEvaluation(boost::shared_ptr<const NEAT::GeneticIndividual> individual,wxDC *drawContext,double realx,double realy)
     {
         NEAT::FastNetwork<double> network = individual->spawnFastPhenotypeStack<double>();
 
@@ -244,9 +244,9 @@ namespace HCUBE
         }
     }
 
-    void RobotArmLatticeExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void RobotArmLatticeExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
-        shared_ptr<NEAT::GeneticIndividual> individual = group.front();
+        boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
         //You get 10 points just for entering the game, wahooo!
         individual->setFitness(10);
 
@@ -282,7 +282,7 @@ namespace HCUBE
         return true;
     }
 
-    void RobotArmLatticeExperiment::createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual)
+    void RobotArmLatticeExperiment::createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         processEvaluation(individual,&drawContext,userx,usery);
     }

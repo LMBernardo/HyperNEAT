@@ -18,8 +18,8 @@
 
 #include "cakepp.h"
 
-#include "SgInit.h"
-#include "GoInit.h"
+// #include "SgInit.h"
+// #include "GoInit.h"
 
 #ifndef HCUBE_NOGUI
 namespace HCUBE
@@ -38,8 +38,8 @@ int HyperNEAT_main(int argc,char **argv)
 
     char str[1024];
     initcake(str);
-    SgInit();
-    GoInit();
+   //  SgInit();
+   //  GoInit();
 
     int retval=0;
 
@@ -99,8 +99,8 @@ int HyperNEAT_main(int argc,char **argv)
 			 continue;
 			 }
 			 
-			 shared_ptr<NEAT::GeneticIndividual> indiv =
-			 shared_ptr<NEAT::GeneticIndividual>(
+			 boost::shared_ptr<NEAT::GeneticIndividual> indiv =
+			 boost::shared_ptr<NEAT::GeneticIndividual>(
 			 new NEAT::GeneticIndividual(
 			 *(experimentRun.getIndividual(generation,0).get())
 			 )
@@ -165,8 +165,8 @@ int HyperNEAT_main(int argc,char **argv)
                     }
 #endif
 					
-                    shared_ptr<NEAT::GeneticIndividual> indiv =
-					shared_ptr<NEAT::GeneticIndividual>(
+                    boost::shared_ptr<NEAT::GeneticIndividual> indiv =
+					boost::shared_ptr<NEAT::GeneticIndividual>(
 														new NEAT::GeneticIndividual(
 																					*(experimentRun.getIndividual(generation,0).get())
 																					)
@@ -174,8 +174,8 @@ int HyperNEAT_main(int argc,char **argv)
 					
 					if(generation!=firstGen)
 					{
-						shared_ptr<NEAT::GeneticIndividual> lastindiv =
-                        shared_ptr<NEAT::GeneticIndividual>(
+						boost::shared_ptr<NEAT::GeneticIndividual> lastindiv =
+                        boost::shared_ptr<NEAT::GeneticIndividual>(
 															new NEAT::GeneticIndividual(
 																						*(experimentRun.getIndividual(generation-1,0).get())
 																						)
@@ -302,8 +302,8 @@ int HyperNEAT_main(int argc,char **argv)
 				
                 for (int generation=firstGen;generation<numGenerations;generation++)
                 {
-                    shared_ptr<NEAT::GeneticIndividual> indiv =
-					shared_ptr<NEAT::GeneticIndividual>(
+                    boost::shared_ptr<NEAT::GeneticIndividual> indiv =
+					boost::shared_ptr<NEAT::GeneticIndividual>(
 														new NEAT::GeneticIndividual(
 																					*(experimentRun.getIndividual(generation,0).get())
 																					)
@@ -311,8 +311,8 @@ int HyperNEAT_main(int argc,char **argv)
 					
 					if(generation!=firstGen || ignoreFirstIfElitism)
 					{
-						shared_ptr<NEAT::GeneticIndividual> lastindiv =
-                        shared_ptr<NEAT::GeneticIndividual>(
+						boost::shared_ptr<NEAT::GeneticIndividual> lastindiv =
+                        boost::shared_ptr<NEAT::GeneticIndividual>(
 															new NEAT::GeneticIndividual(
 																						*(experimentRun.getIndividual(generation-1,0).get())
 																						)
@@ -409,8 +409,8 @@ NEAT::Globals::deinit();
 
 exitcake();
 
-GoFini();
-SgFini();
+// GoFini();
+// SgFini();
 
 return retval;
 }

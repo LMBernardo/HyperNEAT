@@ -14,7 +14,7 @@ namespace HCUBE
     protected:
         //This is kind of a misnomer because all players are board evaluators for black-moving boards.
         //The second guy gets 1 higher ply depth so he can still see black boards at the gametree leafs.
-        shared_ptr<NEAT::GeneticIndividual> individualBlack,individualWhite;
+        boost::shared_ptr<NEAT::GeneticIndividual> individualBlack,individualWhite;
 
         int testCases;
 
@@ -29,13 +29,13 @@ namespace HCUBE
         //virtual CheckersNEATDatatype evaluateLeafWhite(uchar b[8][8]);
 
         virtual pair<double,double> playGame(
-            shared_ptr<NEAT::GeneticIndividual> ind1,
-            shared_ptr<NEAT::GeneticIndividual> ind2
+            boost::shared_ptr<NEAT::GeneticIndividual> ind1,
+            boost::shared_ptr<NEAT::GeneticIndividual> ind2
         );
 
-        virtual void processGroup(shared_ptr<NEAT::GeneticGeneration> generation);
+        virtual void processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation);
 
-        virtual void processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual);
+        virtual void processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual);
 
         virtual Experiment* clone();
 
@@ -44,7 +44,7 @@ namespace HCUBE
             return 1;
         }
 
-        virtual void addGenerationData(shared_ptr<NEAT::GeneticGeneration> generation,shared_ptr<NEAT::GeneticIndividual> individual);
+        virtual void addGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation,boost::shared_ptr<NEAT::GeneticIndividual> individual);
 
     protected:
     };

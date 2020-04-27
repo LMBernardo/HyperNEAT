@@ -82,7 +82,7 @@ namespace HCUBE
 
 		for (int a=0;a<populationSize;a++)
 		{
-			shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+			boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
 			for (int b=0;b<0;b++)
 			{
@@ -268,7 +268,7 @@ namespace HCUBE
 	}
 
 	void OthelloExperiment::populateSubstrate(
-		shared_ptr<const NEAT::GeneticIndividual> individual,
+		boost::shared_ptr<const NEAT::GeneticIndividual> individual,
 		int substrateNum
 		)
 	{
@@ -1475,10 +1475,10 @@ namespace HCUBE
 		return beta;
 	}
 
-	void OthelloExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+	void OthelloExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
 	{
 		//cout << "Processing group\n";
-		shared_ptr<NEAT::GeneticIndividual> individual = group.front();
+		boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
 		//You get 10 points just for entering the game, wahooo!
 		individual->setFitness(10);
 
@@ -1888,12 +1888,12 @@ namespace HCUBE
 		//cout << "Trial over!\n";
 	}
 
-	void OthelloExperiment::processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual)
+	void OthelloExperiment::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
 	{
 		cout << "INDIVIDUAL FITNESS BEFORE: " << individual->getFitness() << endl;
 		clearGroup();
 		addIndividualToGroup(individual);
-		shared_ptr<GeneticGeneration> dummy;
+		boost::shared_ptr<GeneticGeneration> dummy;
 
 		//force this version of processGroup so that I can test co-evolved
 		//individuals against the weighted piece counter.
@@ -1903,7 +1903,7 @@ namespace HCUBE
 	}
 
 #ifndef HCUBE_NOGUI
-	void OthelloExperiment::createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual)
+	void OthelloExperiment::createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual)
 	{
 		if (lastIndividualSeen!=individual)
 		{
@@ -2085,12 +2085,12 @@ namespace HCUBE
 		return experiment;
 	}
 
-	void OthelloExperiment::resetGenerationData(shared_ptr<NEAT::GeneticGeneration> generation)
+	void OthelloExperiment::resetGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation)
 	{
 		//generation->setUserData(new TicTacToeStats());
 	}
 
-	void OthelloExperiment::addGenerationData(shared_ptr<NEAT::GeneticGeneration> generation,shared_ptr<NEAT::GeneticIndividual> individual)
+	void OthelloExperiment::addGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation,boost::shared_ptr<NEAT::GeneticIndividual> individual)
 	{
 		//TicTacToeStats* ticTacToeStats = (TicTacToeStats*)generation->getUserData();
 

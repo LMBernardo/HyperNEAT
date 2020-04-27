@@ -23,13 +23,13 @@ namespace HCUBE
         /** Constructor */
         NeuralNetworkPanel( wxWindow* parent, int id, wxPoint pos, wxSize size, int style );
 
-        void setTarget(shared_ptr<NEAT::GeneticIndividual> individual);
+        void setTarget(boost::shared_ptr<NEAT::GeneticIndividual> individual);
 
         void setReadOnly(bool value);
 
         bool isReadOnly();
 
-        //void createNetworkImage(shared_ptr<const NEAT::GeneticIndividual> individual);
+        //void createNetworkImage(boost::shared_ptr<const NEAT::GeneticIndividual> individual);
 
         //void paint(wxPaintEvent& event);
 

@@ -119,7 +119,7 @@ namespace HCUBE
 
 		for (int a=0;a<populationSize;a++)
 		{
-			shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+			boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
 			for (int b=0;b<0;b++)
 			{
@@ -145,7 +145,7 @@ namespace HCUBE
   mutex imageMutex;
   set<string> filesSaved;
 	void ImageCompressionExperiment::populateSubstrate(
-		shared_ptr<NEAT::GeneticIndividual> individual
+		boost::shared_ptr<NEAT::GeneticIndividual> individual
 		)
 	{
 		if (substrateIndividual==individual)
@@ -297,7 +297,7 @@ namespace HCUBE
 		}
 	}
 
-	void ImageCompressionExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+	void ImageCompressionExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
 	{
 		populateSubstrate(group[0]);
 
@@ -305,7 +305,7 @@ namespace HCUBE
 		if(generation->getGenerationNumber()==9)
 		{
 		cout << "LOCKING TOPOLOGY\n";
-		shared_ptr<NEAT::GeneticIndividual> individual = group[0];
+		boost::shared_ptr<NEAT::GeneticIndividual> individual = group[0];
 
 		//Lock the topology
 
@@ -346,7 +346,7 @@ namespace HCUBE
 		*/
 	}
 
-	void ImageCompressionExperiment::processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual)
+	void ImageCompressionExperiment::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
 	{
 		populateSubstrate(individual);
 
@@ -412,12 +412,12 @@ namespace HCUBE
 		return experiment;
 	}
 
-	void ImageCompressionExperiment::resetGenerationData(shared_ptr<NEAT::GeneticGeneration> generation)
+	void ImageCompressionExperiment::resetGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation)
 	{
 		//generation->setUserData(new TicTacToeStats());
 	}
 
-	void ImageCompressionExperiment::addGenerationData(shared_ptr<NEAT::GeneticGeneration> generation,shared_ptr<NEAT::GeneticIndividual> individual)
+	void ImageCompressionExperiment::addGenerationData(boost::shared_ptr<NEAT::GeneticGeneration> generation,boost::shared_ptr<NEAT::GeneticIndividual> individual)
 	{
 		//TicTacToeStats* ticTacToeStats = (TicTacToeStats*)generation->getUserData();
 

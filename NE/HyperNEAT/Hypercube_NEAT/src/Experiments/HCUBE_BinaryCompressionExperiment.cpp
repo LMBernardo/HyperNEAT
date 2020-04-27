@@ -89,7 +89,7 @@ namespace HCUBE
 
         for (int a=0;a<populationSize;a++)
         {
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,true,1.0));
 
             for (int b=0;b<0;b++)
             {
@@ -113,7 +113,7 @@ namespace HCUBE
     }
 
     void BinaryCompressionExperiment::populateSubstrate(
-        shared_ptr<NEAT::GeneticIndividual> individual
+        boost::shared_ptr<NEAT::GeneticIndividual> individual
         )
     {
         if (substrateIndividual==individual)
@@ -128,9 +128,9 @@ namespace HCUBE
 
     int BEST_DIFFERENCE = 1000000000;
 
-    void BinaryCompressionExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void BinaryCompressionExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
-        shared_ptr<NEAT::GeneticIndividual> individual = group.front();
+        boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
 
         //cout << "Processing evaluation...\n";
         individual->setFitness(10);
@@ -172,7 +172,7 @@ namespace HCUBE
         individual->reward(tmpfit*tmpfit);
     }
 
-    void BinaryCompressionExperiment::processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual)
+    void BinaryCompressionExperiment::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
     }
 

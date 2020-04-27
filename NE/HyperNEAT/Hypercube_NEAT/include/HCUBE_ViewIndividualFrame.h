@@ -11,13 +11,13 @@ namespace HCUBE
     {
     public:
     protected:
-        shared_ptr<Experiment> experiment;
-        shared_ptr<NEAT::GeneticIndividual> individual;
+        boost::shared_ptr<Experiment> experiment;
+        boost::shared_ptr<NEAT::GeneticIndividual> individual;
 
     public:
         ViewIndividualFrame(
-            shared_ptr<Experiment> _experiment,
-            shared_ptr<NEAT::GeneticIndividual> _individual,
+            boost::shared_ptr<Experiment> _experiment,
+            boost::shared_ptr<NEAT::GeneticIndividual> _individual,
             wxWindow* parent,
             int id = wxID_ANY,
             wxString title = wxEmptyString,

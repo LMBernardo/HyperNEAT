@@ -18,7 +18,7 @@ namespace NEAT
             : onGeneration(0)
     {
             generations.push_back(
-                shared_ptr<GeneticGeneration>(
+                boost::shared_ptr<GeneticGeneration>(
                     new GeneticGeneration(0)
                 )
             );
@@ -54,7 +54,7 @@ namespace NEAT
 
             while (generationElement)
             {
-                generations.push_back(shared_ptr<GeneticGeneration>(new GeneticGeneration(generationElement)));
+                generations.push_back(boost::shared_ptr<GeneticGeneration>(new GeneticGeneration(generationElement)));
 
                 generationElement = generationElement->NextSiblingElement("GeneticGeneration");
                 onGeneration++;
@@ -71,14 +71,14 @@ namespace NEAT
     }
 
 #ifdef EPLEX_INTERNAL
-    GeneticPopulation::GeneticPopulation(shared_ptr<CoEvoExperiment> experiment)
+    GeneticPopulation::GeneticPopulation(boost::shared_ptr<CoEvoExperiment> experiment)
             : onGeneration(0)
     {
         if (experiment)
         {
             generations.push_back(
                 static_pointer_cast<GeneticGeneration>(
-                    shared_ptr<CoEvoGeneticGeneration>(
+                    boost::shared_ptr<CoEvoGeneticGeneration>(
                         new CoEvoGeneticGeneration(0,experiment)
                     )
                 )
@@ -87,7 +87,7 @@ namespace NEAT
         else
         {
             generations.push_back(
-                shared_ptr<GeneticGeneration>(
+                boost::shared_ptr<GeneticGeneration>(
                     new GeneticGeneration(0)
                 )
             );
@@ -96,7 +96,7 @@ namespace NEAT
 
     GeneticPopulation::GeneticPopulation(
         string fileName,
-        shared_ptr<CoEvoExperiment> experiment
+        boost::shared_ptr<CoEvoExperiment> experiment
     )
             : onGeneration(-1)
     {
@@ -136,7 +136,7 @@ namespace NEAT
                     throw CREATE_LOCATEDEXCEPTION_INFO("ERROR: TRIED TO CREATE A COEVOLUTION WITHOUT AN EXPERIMENT!");
                 }
 
-                generations.push_back(shared_ptr<GeneticGeneration>(
+                generations.push_back(boost::shared_ptr<GeneticGeneration>(
                                           new CoEvoGeneticGeneration(generationElement,experiment))
                                      );
                 generationElement = generationElement->NextSiblingElement("CoEvoGeneticGeneration");
@@ -170,12 +170,12 @@ namespace NEAT
         return generations[generation]->getIndividualCount();
     }
 
-    void GeneticPopulation::addIndividual(shared_ptr<GeneticIndividual> individual)
+    void GeneticPopulation::addIndividual(boost::shared_ptr<GeneticIndividual> individual)
     {
         generations[onGeneration]->addIndividual(individual);
     }
 
-    shared_ptr<GeneticIndividual> GeneticPopulation::getIndividual(int individualIndex,int generation)
+    boost::shared_ptr<GeneticIndividual> GeneticPopulation::getIndividual(int individualIndex,int generation)
     {
         //cout << a << ',' << generation << endl;
 
@@ -194,7 +194,7 @@ namespace NEAT
         return generations[generation]->getIndividual(individualIndex);
     }
 
-    vector<shared_ptr<GeneticIndividual> >::iterator GeneticPopulation::getIndividualIterator(int a,int generation)
+    vector<boost::shared_ptr<GeneticIndividual> >::iterator GeneticPopulation::getIndividualIterator(int a,int generation)
     {
         if (generation==-1)
             generation=int(onGeneration);
@@ -207,15 +207,15 @@ namespace NEAT
         return generations[generation]->getIndividualIterator(a);
     }
 
-    shared_ptr<GeneticIndividual> GeneticPopulation::getBestAllTimeIndividual()
+    boost::shared_ptr<GeneticIndividual> GeneticPopulation::getBestAllTimeIndividual()
     {
-        shared_ptr<GeneticIndividual> bestIndividual;
+        boost::shared_ptr<GeneticIndividual> bestIndividual;
 
         for (int a=0;a<(int)generations.size();a++)
         {
             for (int b=0;b<generations[a]->getIndividualCount();b++)
             {
-                shared_ptr<GeneticIndividual> individual = generations[a]->getIndividual(b);
+                boost::shared_ptr<GeneticIndividual> individual = generations[a]->getIndividual(b);
                 if (bestIndividual==NULL||bestIndividual->getFitness()<=individual->getFitness())
                     bestIndividual = individual;
             }
@@ -224,16 +224,16 @@ namespace NEAT
         return bestIndividual;
     }
 
-    shared_ptr<GeneticIndividual> GeneticPopulation::getBestIndividualOfGeneration(int generation)
+    boost::shared_ptr<GeneticIndividual> GeneticPopulation::getBestIndividualOfGeneration(int generation)
     {
-        shared_ptr<GeneticIndividual> bestIndividual;
+        boost::shared_ptr<GeneticIndividual> bestIndividual;
 
         if (generation==-1)
             generation = int(generations.size())-1;
 
         for (int b=0;b<generations[generation]->getIndividualCount();b++)
         {
-            shared_ptr<GeneticIndividual> individual = generations[generation]->getIndividual(b);
+            boost::shared_ptr<GeneticIndividual> individual = generations[generation]->getIndividual(b);
             if (bestIndividual==NULL||bestIndividual->getFitness()<individual->getFitness())
                 bestIndividual = individual;
         }
@@ -247,7 +247,7 @@ namespace NEAT
 
         for (int a=0;a<generations[onGeneration]->getIndividualCount();a++)
         {
-            shared_ptr<GeneticIndividual> individual = generations[onGeneration]->getIndividual(a);
+            boost::shared_ptr<GeneticIndividual> individual = generations[onGeneration]->getIndividual(a);
 
             bool makeNewSpecies=true;
 
@@ -266,7 +266,7 @@ namespace NEAT
             if (makeNewSpecies)
             {
                 //Make a new species.  The process of making a new speceis sets the ID for the individual.
-                shared_ptr<GeneticSpecies> newSpecies(new GeneticSpecies(individual));
+                boost::shared_ptr<GeneticSpecies> newSpecies(new GeneticSpecies(individual));
                 species.push_back(newSpecies);
             }
         }
@@ -328,7 +328,7 @@ namespace NEAT
 
         for (int a=0;a<generations[onGeneration]->getIndividualCount();a++)
         {
-            shared_ptr<GeneticIndividual> individual = generations[onGeneration]->getIndividual(a);
+            boost::shared_ptr<GeneticIndividual> individual = generations[onGeneration]->getIndividual(a);
 
             getSpecies(individual->getSpeciesID())->addIndividual(individual);
         }
@@ -400,8 +400,8 @@ namespace NEAT
         {
             for (int a=0;totalOffspring<numParents&&a<generations[onGeneration]->getIndividualCount();a++)
             {
-                shared_ptr<GeneticIndividual> ind = generations[onGeneration]->getIndividual(a);
-                shared_ptr<GeneticSpecies> gs = getSpecies(ind->getSpeciesID());
+                boost::shared_ptr<GeneticIndividual> ind = generations[onGeneration]->getIndividual(a);
+                boost::shared_ptr<GeneticSpecies> gs = getSpecies(ind->getSpeciesID());
                 gs->setOffspringCount(gs->getOffspringCount()+1);
                 totalOffspring++;
 
@@ -423,7 +423,7 @@ namespace NEAT
         }
 
         //This is the new generation
-        vector<shared_ptr<GeneticIndividual> > babies;
+        vector<boost::shared_ptr<GeneticIndividual> > babies;
 
         double totalIndividualFitness=0;
 
@@ -445,8 +445,8 @@ namespace NEAT
         for (int a=0;a<generations[onGeneration]->getIndividualCount();a++)
         {
             //Go through and add the species champions
-            shared_ptr<GeneticIndividual> ind = generations[onGeneration]->getIndividual(a);
-            shared_ptr<GeneticSpecies> species = getSpecies(ind->getSpeciesID());
+            boost::shared_ptr<GeneticIndividual> ind = generations[onGeneration]->getIndividual(a);
+            boost::shared_ptr<GeneticSpecies> species = getSpecies(ind->getSpeciesID());
             if (!species->isReproduced())
             {
                 species->setReproduced(true);
@@ -467,7 +467,7 @@ namespace NEAT
                         mutateChampion = true;
                     else
                         mutateChampion = false;
-                    babies.push_back(shared_ptr<GeneticIndividual>(new GeneticIndividual(ind,mutateChampion)));
+                    babies.push_back(boost::shared_ptr<GeneticIndividual>(new GeneticIndividual(ind,mutateChampion)));
                     species->decrementOffspringCount();
                 }
 
@@ -501,7 +501,7 @@ namespace NEAT
         }
 
         //cout << "Making new generation\n";
-        shared_ptr<GeneticGeneration> newGeneration(generations[onGeneration]->produceNextGeneration(babies,onGeneration+1));
+        boost::shared_ptr<GeneticGeneration> newGeneration(generations[onGeneration]->produceNextGeneration(babies,onGeneration+1));
         //cout << "Done Making new generation!\n";
 
         /*for(int a=0;a<4;a++)

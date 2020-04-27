@@ -53,7 +53,7 @@ namespace HCUBE
         for (int a=0;a<populationSize;a++)
         {
             //cout << "Creating Individual\n";
-            shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,links));
+            boost::shared_ptr<GeneticIndividual> individual(new GeneticIndividual(genes,links));
             for (int b=0;b<0;b++)
             {
                 individual->testMutate();
@@ -131,7 +131,7 @@ namespace HCUBE
         */
         cout << "done!\n";
     }
-    void FindClusterNoGeomExperiment::populateSubstrate(shared_ptr<NEAT::GeneticIndividual> individual)
+    void FindClusterNoGeomExperiment::populateSubstrate(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         NEAT::FastNetwork<double> network = individual->spawnFastPhenotypeStack<double>();
         int counter=0;
@@ -168,7 +168,7 @@ namespace HCUBE
         }
     }
     double FindClusterNoGeomExperiment::processEvaluation(
-        shared_ptr<NEAT::GeneticIndividual> individual,
+        boost::shared_ptr<NEAT::GeneticIndividual> individual,
         wxDC *drawContext,
         int x1,
         int y1,
@@ -308,9 +308,9 @@ namespace HCUBE
         }
         return max(0,30- ( (largestx-x1Big)*(largestx-x1Big) + (largesty-y1Big)*(largesty-y1Big) ) );
     }
-    void FindClusterNoGeomExperiment::processGroup(shared_ptr<NEAT::GeneticGeneration> generation)
+    void FindClusterNoGeomExperiment::processGroup(boost::shared_ptr<NEAT::GeneticGeneration> generation)
     {
-        shared_ptr<NEAT::GeneticIndividual> individual = group.front();
+        boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
         /*{
             cout << "Starting Evaluation on object:" << this << endl;
             cout << "Running on individual " << individual << endl;
@@ -382,7 +382,7 @@ namespace HCUBE
             cout << "PROBLEM DOMAIN SOLVED!!!\n";
         }
     }
-    void FindClusterNoGeomExperiment::processIndividualPostHoc(shared_ptr<NEAT::GeneticIndividual> individual)
+    void FindClusterNoGeomExperiment::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         /*{
             cout << "Starting Evaluation on object:" << this << endl;
@@ -519,7 +519,7 @@ namespace HCUBE
         }
         return true;
     }
-    void FindClusterNoGeomExperiment::createIndividualImage(wxDC &drawContext,shared_ptr<NEAT::GeneticIndividual> individual)
+    void FindClusterNoGeomExperiment::createIndividualImage(wxDC &drawContext,boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         populateSubstrate(individual);
         processEvaluation(

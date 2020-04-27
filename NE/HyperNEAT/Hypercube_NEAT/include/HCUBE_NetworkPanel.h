@@ -23,7 +23,7 @@ namespace HCUBE
             int style = wxTAB_TRAVERSAL
         );
 
-        void createNetworkImage(shared_ptr<const NEAT::GeneticIndividual> individual);
+        void createNetworkImage(boost::shared_ptr<const NEAT::GeneticIndividual> individual);
 
         void paint(wxPaintEvent& event);
 

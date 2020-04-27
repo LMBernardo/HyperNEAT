@@ -10,7 +10,7 @@
 namespace NEAT
 {
 
-    GeneticSpecies::GeneticSpecies(shared_ptr<GeneticIndividual> firstIndividual)
+    GeneticSpecies::GeneticSpecies(boost::shared_ptr<GeneticIndividual> firstIndividual)
             :
             age(0),
             ageOfLastImprovement(0),
@@ -25,7 +25,7 @@ namespace NEAT
     GeneticSpecies::~GeneticSpecies()
     {}
 
-    void GeneticSpecies::setBestIndividual(shared_ptr<GeneticIndividual> ind)
+    void GeneticSpecies::setBestIndividual(boost::shared_ptr<GeneticIndividual> ind)
     {
         bestIndividualEver = ind;
         // Base improvement age off of best individual update.
@@ -65,7 +65,7 @@ namespace NEAT
         speciesFitness=0;
         for (int a=0;a<(int)currentIndividuals.size();a++)
         {
-            shared_ptr<GeneticIndividual> individual = currentIndividuals[a];
+            boost::shared_ptr<GeneticIndividual> individual = currentIndividuals[a];
 
             speciesFitness+=individual->getFitness();
         }
@@ -86,7 +86,7 @@ namespace NEAT
         }
     }
 
-    void GeneticSpecies::makeBabies(vector<shared_ptr<GeneticIndividual> > &babies)
+    void GeneticSpecies::makeBabies(vector<boost::shared_ptr<GeneticIndividual> > &babies)
     {
         int lastIndex = int(Globals::getSingleton()->getParameterValue("SurvivalThreshold")*currentIndividuals.size());
 
@@ -103,8 +103,8 @@ namespace NEAT
                 cout << "Error while making babies, need to choose the best of the species and bail!\n";
                 //Something messed up, bail
                 int parent = 0;
-                shared_ptr<GeneticIndividual> ind = currentIndividuals[parent];
-                babies.push_back(shared_ptr<GeneticIndividual>(new GeneticIndividual(ind,true)));
+                boost::shared_ptr<GeneticIndividual> ind = currentIndividuals[parent];
+                babies.push_back(boost::shared_ptr<GeneticIndividual>(new GeneticIndividual(ind,true)));
                 offspringCount--;
                 continue;
             }
@@ -113,13 +113,13 @@ namespace NEAT
             if (onlyOneParent||Globals::getSingleton()->getRandom().getRandomDouble()<mutateOnlyProb)
             {
                 int parent = Globals::getSingleton()->getRandom().getRandomWithinRange(0,int(lastIndex));
-                shared_ptr<GeneticIndividual> ind = currentIndividuals[parent];
-                babies.push_back(shared_ptr<GeneticIndividual>(new GeneticIndividual(ind,true)));
+                boost::shared_ptr<GeneticIndividual> ind = currentIndividuals[parent];
+                babies.push_back(boost::shared_ptr<GeneticIndividual>(new GeneticIndividual(ind,true)));
                 offspringCount--;
             }
             else
             {
-                shared_ptr<GeneticIndividual> parent1,parent2;
+                boost::shared_ptr<GeneticIndividual> parent1,parent2;
 
                 //while(parent1==NULL)
                 {
@@ -139,17 +139,17 @@ namespace NEAT
                     int parentIndex = Globals::getSingleton()->getRandom().getRandomWithinRange(0,int(lastIndex));
                     parent2 = currentIndividuals[parentIndex];
                     //if(parent2==parent1)
-                    //parent2=shared_ptr<GeneticIndividual>();
+                    //parent2=boost::shared_ptr<GeneticIndividual>();
                 }
                 while (parent2==parent1&&tt<=1000000);
 
                 if (parent1==parent2)
                 {
-                    babies.push_back(shared_ptr<GeneticIndividual>(new GeneticIndividual(parent1,true)));
+                    babies.push_back(boost::shared_ptr<GeneticIndividual>(new GeneticIndividual(parent1,true)));
                 }
                 else
                 {
-                    babies.push_back(shared_ptr<GeneticIndividual>(new GeneticIndividual(parent1,parent2)));
+                    babies.push_back(boost::shared_ptr<GeneticIndividual>(new GeneticIndividual(parent1,parent2)));
                 }
                 offspringCount--;
             }

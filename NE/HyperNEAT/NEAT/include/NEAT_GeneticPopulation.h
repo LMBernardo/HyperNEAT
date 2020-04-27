@@ -1,6 +1,7 @@
 #ifndef __GENETICPOPULATION_H__
 #define __GENETICPOPULATION_H__
 
+#include <vector>
 #include "tinyxmlplus.h"
 #include "NEAT_STL.h"
 
@@ -20,12 +21,12 @@ namespace NEAT
      */
     class GeneticPopulation
     {
-        vector<shared_ptr<GeneticGeneration> > generations;
+        std::vector<boost::shared_ptr<GeneticGeneration> > generations;
 
-        vector<shared_ptr<GeneticSpecies> > species;
+        std::vector<boost::shared_ptr<GeneticSpecies> > species;
 
         //we use a separate vector for extinct species to save CPU.
-        vector<shared_ptr<GeneticSpecies> > extinctSpecies;
+        std::vector<boost::shared_ptr<GeneticSpecies> > extinctSpecies;
 
         int onGeneration;
     public:
@@ -34,14 +35,14 @@ namespace NEAT
         NEAT_DLL_EXPORT GeneticPopulation(string fileName);
 
 #ifdef EPLEX_INTERNAL
-        NEAT_DLL_EXPORT GeneticPopulation(shared_ptr<CoEvoExperiment> experiment);
+        NEAT_DLL_EXPORT GeneticPopulation(boost::shared_ptr<CoEvoExperiment> experiment);
 
-        NEAT_DLL_EXPORT GeneticPopulation(string fileName,shared_ptr<CoEvoExperiment> experiment);
+        NEAT_DLL_EXPORT GeneticPopulation(string fileName,boost::shared_ptr<CoEvoExperiment> experiment);
 #endif
 
         NEAT_DLL_EXPORT virtual ~GeneticPopulation();
 
-        inline shared_ptr<GeneticGeneration> getGeneration(int generationIndex=-1)
+        inline boost::shared_ptr<GeneticGeneration> getGeneration(int generationIndex=-1)
         {
             if (generationIndex==-1)
                 generationIndex=int(onGeneration);
@@ -49,19 +50,19 @@ namespace NEAT
             return generations[generationIndex];
         }
 
-        NEAT_DLL_EXPORT void addIndividual(shared_ptr<GeneticIndividual> individual);
+        NEAT_DLL_EXPORT void addIndividual(boost::shared_ptr<GeneticIndividual> individual);
 
         NEAT_DLL_EXPORT int getIndividualCount(int generation=-1);
 
-        NEAT_DLL_EXPORT shared_ptr<GeneticIndividual> getIndividual(int individualIndex,int generation=-1);
+        NEAT_DLL_EXPORT boost::shared_ptr<GeneticIndividual> getIndividual(int individualIndex,int generation=-1);
 
-        NEAT_DLL_EXPORT vector<shared_ptr<GeneticIndividual> >::iterator getIndividualIterator(int a,int generation=-1);
+        NEAT_DLL_EXPORT std::vector<boost::shared_ptr<GeneticIndividual> >::iterator getIndividualIterator(int a,int generation=-1);
 
-        NEAT_DLL_EXPORT shared_ptr<GeneticIndividual> getBestAllTimeIndividual();
+        NEAT_DLL_EXPORT boost::shared_ptr<GeneticIndividual> getBestAllTimeIndividual();
 
-        NEAT_DLL_EXPORT shared_ptr<GeneticIndividual> getBestIndividualOfGeneration(int generation=LAST_GENERATION);
+        NEAT_DLL_EXPORT boost::shared_ptr<GeneticIndividual> getBestIndividualOfGeneration(int generation=LAST_GENERATION);
 
-        inline shared_ptr<GeneticSpecies> getSpecies(int id)
+        inline boost::shared_ptr<GeneticSpecies> getSpecies(int id)
         {
             for (int a=0;a<(int)species.size();a++)
             {

@@ -17,7 +17,7 @@ namespace HCUBE
             //Process individuals sequentially
             running=true;
 
-            vector<shared_ptr<NEAT::GeneticIndividual> >::iterator tmpIterator;
+            std::vector<boost::shared_ptr<NEAT::GeneticIndividual> >::iterator tmpIterator;
 
             tmpIterator = individualIterator;
             for (int a=0;a<individualCount;a++,tmpIterator++)
