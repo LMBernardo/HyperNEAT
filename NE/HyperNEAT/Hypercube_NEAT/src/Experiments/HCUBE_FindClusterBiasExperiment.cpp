@@ -749,7 +749,7 @@ namespace HCUBE
     {
         boost::shared_ptr<NEAT::GeneticIndividual> individual = group.front();
         /*{
-            mutex::scoped_lock scoped_lock(*Globals::ioMutex);
+            boost::mutex::scoped_lock scoped_lock(*Globals::ioMutex);
             cout << "Starting Evaluation on object:" << this << endl;
             cout << "Running on individual " << individual << endl;
         }*/
@@ -840,7 +840,7 @@ namespace HCUBE
     void FindClusterBiasExperiment::processIndividualPostHoc(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         /*{
-            mutex::scoped_lock scoped_lock(*Globals::ioMutex);
+            boost::mutex::scoped_lock scoped_lock(*Globals::ioMutex);
             cout << "Starting Evaluation on object:" << this << endl;
             cout << "Running on individual " << individual << endl;
         }*/

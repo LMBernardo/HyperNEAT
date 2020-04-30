@@ -197,10 +197,12 @@ include/NEAT_LayeredSubstrate.h
 )
 
 use_precompiled_header(
-	NEATLib 
+	NEATLib
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/NEAT_Defines.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/NEAT_Defines.cpp"
 	)
 
 SET_TARGET_PROPERTIES(NEATLib PROPERTIES DEBUG_POSTFIX _d)
 
+FIND_PACKAGE(Boost COMPONENTS system thread filesystem REQUIRED)
+TARGET_LINK_LIBRARIES(NEATLib ${Boost_LIBRARIES})

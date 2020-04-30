@@ -142,7 +142,7 @@ namespace HCUBE
 		return population;
 	}
 
-  mutex imageMutex;
+  boost::mutex imageMutex;
   set<string> filesSaved;
 	void ImageCompressionExperiment::populateSubstrate(
 		boost::shared_ptr<NEAT::GeneticIndividual> individual
@@ -233,7 +233,7 @@ namespace HCUBE
                 //cout << "FITNESS: " << individual->getFitness() << ' ' << FITNESS_THRESHOLD << endl;
 		if(individual->getFitness()>FITNESS_THRESHOLD)
 		{
-                  mutex::scoped_lock scoped_lock(imageMutex);
+                  boost::mutex::scoped_lock scoped_lock(imageMutex);
                   string filename = string("TestImages/FIT") + toString((int(individual->getFitness())/50)*50) + string(OUTPUT_PPM);
                   if (filesSaved.find(filename) == filesSaved.end())
                     {

@@ -1,13 +1,5 @@
 set -e
 
-pushd boost_1_57_0
-pushd tools/build/
-bash bootstrap.sh
-./b2 install --prefix=$PWD/out
-popd
-tools/build/bjam --build-dir=$PWD/out address-model=64 toolset=gcc variant=debug,release link=static threading=multi runtime-link=shared cxxflags="" -j16 --build-type=complete --layout=tagged stage || echo "Boost fails some targets, no biggie"
-popd
-
 pushd zlib
 mkdir -p build
 pushd build
@@ -93,7 +85,7 @@ mkdir -p release
 #popd
 pushd release
 cmake -DCMAKE_BUILD_TYPE=Release ../../
-make -j8
+make VERBOSE=1 -j8
 popd
 popd
 popd

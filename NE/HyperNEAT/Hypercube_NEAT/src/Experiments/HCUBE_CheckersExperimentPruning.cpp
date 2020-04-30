@@ -95,7 +95,7 @@ namespace HCUBE
 
     using namespace NEAT;
 
-    extern mutex cakeMutex;
+    extern boost::mutex cakeMutex;
 
     CheckersExperimentPruning::CheckersExperimentPruning(string _experimentName,int _threadID)
         :

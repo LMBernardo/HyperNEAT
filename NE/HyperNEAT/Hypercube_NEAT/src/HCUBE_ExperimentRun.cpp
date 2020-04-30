@@ -56,7 +56,7 @@ namespace HCUBE
         running(false),
         started(false),
         cleanup(false),
-        populationMutex(new mutex()),
+        populationMutex(new boost::mutex()),
         frame(NULL)
     {
     }
@@ -293,7 +293,7 @@ namespace HCUBE
                     //Even if we are loading an existing population,
                     //Re-evaluate all of the individuals
                     //as a sanity check
-                    mutex::scoped_lock scoped_lock(*populationMutex);
+                    boost::mutex::scoped_lock scoped_lock(*populationMutex);
                     cout << "PRODUCING NEXT GENERATION\n";
                     produceNextGeneration();
                     cout << "DONE PRODUCING\n";

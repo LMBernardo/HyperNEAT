@@ -93,7 +93,7 @@ namespace HCUBE
 
     using namespace NEAT;
 
-    mutex cakeMutex;
+    boost::mutex cakeMutex;
 
     CheckersExperiment::CheckersExperiment(string _experimentName,int _threadID)
         :

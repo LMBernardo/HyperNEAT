@@ -23,7 +23,7 @@ namespace HCUBE
 
         vector<boost::shared_ptr<Experiment> > experiments;
 
-        mutex* populationMutex;
+        boost::mutex* populationMutex;
 
         MainFrame *frame;
 
@@ -148,7 +148,7 @@ namespace HCUBE
         */
         void produceNextGeneration();
 
-        inline mutex* getPopulationMutex()
+        inline boost::mutex* getPopulationMutex()
         {
             return populationMutex;
         }

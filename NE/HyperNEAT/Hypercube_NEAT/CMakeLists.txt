@@ -473,6 +473,7 @@ TARGET_LINK_LIBRARIES(
 	Hypercube_NEAT_Base_d
 
 	optimized
+	boost_system
 	Hypercube_NEAT_Base
 		
 	debug
