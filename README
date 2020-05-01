@@ -10,8 +10,8 @@ NOTE: This is a fork of the original project. The main focus of this fork is to
       In pursuit of this goal, some features and experiments have been dropped
       and may not be reimplemented - in particular, the fuego library used for
       the Go experiment is badly out of date and broken and has been removed.
-      This project is currently building properly on Arch Linux with kernel
-      5.6.6 using the provided buildAll.sh script.
+      This project is currently building properly on Arch Linux with gcc 9.3.0 
+      using the provided buildAll.sh script.
       
       IN ORDER TO FIX COMPILATION, MANY LINES OF CODE HAVE BEEN UPDATED. IT IS
       VERY LIKELY THAT SOME FUNCTIONALITY NO LONGER WORKS AS INTENDED.
