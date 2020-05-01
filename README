@@ -3,7 +3,21 @@ By Jason Gauci
 http://ucfpawn.homelinux.com/joomla/
 jgauci@cs.ucf.edu
 
-Documentation for this package is included in this README file.  
+Documentation for this package is included in this README file.
+
+NOTE: This is a fork of the original project. The main focus of this fork is to
+      update the codebase so that it can be built and run on modern systems.
+      In pursuit of this goal, some features and experiments have been dropped
+      and may not be reimplemented - in particular, the fuego library used for
+      the Go experiment is badly out of date and broken and has been removed.
+      This project is currently building properly on Arch Linux with gcc 9.3.0 
+      using the provided buildAll.sh script.
+      
+      IN ORDER TO FIX COMPILATION, MANY LINES OF CODE HAVE BEEN UPDATED. IT IS
+      VERY LIKELY THAT SOME FUNCTIONALITY NO LONGER WORKS AS INTENDED.
+      
+      Please do not use this fork for serious machine learning applications.
+      This is for experimentation purposes only.
 
 -------------
 1. LICENSE
