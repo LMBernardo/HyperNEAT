@@ -105,7 +105,7 @@ namespace HCUBE
                     wxGetCwd(),
                     _T(""),
                     _T("*.dat"),
-                    wxOPEN|wxFILE_MUST_EXIST
+                    wxFC_OPEN|wxFD_FILE_MUST_EXIST
                 );
 
                 int retVal = loadParametersDialog.ShowModal();
@@ -122,7 +122,7 @@ namespace HCUBE
                         loadParametersDialog.GetDirectory(),
                         STRING_TO_WXSTRING(fileName),
                         _T("*.xml;*.gz"),
-                        wxSAVE
+                        wxFC_SAVE
                     );
 
                     retVal = outputFileDialog.ShowModal();
@@ -194,7 +194,7 @@ namespace HCUBE
                 wxGetCwd(),
                 _T(""),
                 _T("*.xml;*.gz"),
-                wxOPEN|wxFILE_MUST_EXIST
+                wxFC_OPEN|wxFD_FILE_MUST_EXIST
             );
 
             int retVal = loadParametersDialog.ShowModal();
@@ -288,17 +288,17 @@ namespace HCUBE
             string(" Individual: ") +
             toString(individual);
 
-        mutex *populationMutex = experimentRun.getPopulationMutex();
+        boost::mutex *populationMutex = experimentRun.getPopulationMutex();
         {
-            mutex::scoped_lock scoped_lock(*populationMutex);
+            boost::mutex::scoped_lock scoped_lock(*populationMutex);
 
-            shared_ptr<Experiment> experiment(experimentRun.getExperiment()->clone());
+            boost::shared_ptr<Experiment> experiment(experimentRun.getExperiment()->clone());
 
             experiment->setExperimentName(title);
 
             //We do -1 because indicies are 0-based
-            shared_ptr<NEAT::GeneticIndividual> indiv =
-                shared_ptr<NEAT::GeneticIndividual>(
+            boost::shared_ptr<NEAT::GeneticIndividual> indiv =
+                boost::shared_ptr<NEAT::GeneticIndividual>(
                     new NEAT::GeneticIndividual(
                         *(experimentRun.getIndividual(generation-1,individual-1).get())
                     )
@@ -334,13 +334,13 @@ namespace HCUBE
             string(" Individual: ") +
             toString(individual);
 
-        mutex *populationMutex = experimentRun.getPopulationMutex();
+        boost::mutex *populationMutex = experimentRun.getPopulationMutex();
         {
-            mutex::scoped_lock scoped_lock(*populationMutex);
+            boost::mutex::scoped_lock scoped_lock(*populationMutex);
 
             Experiment *experiment = experimentRun.getExperiment()->clone();
 
-            shared_ptr<NEAT::GeneticIndividual> indiv(
+            boost::shared_ptr<NEAT::GeneticIndividual> indiv(
                 new NEAT::GeneticIndividual(
                     *(experimentRun.getIndividual(generation-1,individual-1).get())
                 )

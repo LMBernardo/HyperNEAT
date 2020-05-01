@@ -48,7 +48,7 @@ namespace HCUBE
         evaluationPanels.push_back(evaluationPanel7);
     }
 
-    void UserEvaluationFrame::updateIndividual(shared_ptr<NEAT::GeneticIndividual> individual)
+    void UserEvaluationFrame::updateIndividual(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         for (int a=0;a<8;a++)
         {
@@ -134,7 +134,7 @@ namespace HCUBE
         event.Skip();
     }
 
-    void UserEvaluationFrame::processHighResImage(shared_ptr<NEAT::GeneticIndividual> individual)
+    void UserEvaluationFrame::processHighResImage(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         highResPanel->setTarget(experimentRun->getExperiment(),individual);
     }

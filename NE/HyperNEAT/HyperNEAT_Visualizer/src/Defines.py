@@ -11,7 +11,7 @@ import sys,os
 import GlobalData
 
 pyHyperNEATPath = os.path.split(os.path.split(os.getcwd())[0])[0] + '/out'
-print 'Looking for PyHyperNEAT DLL at', pyHyperNEATPath
+print('Looking for PyHyperNEAT DLL at', pyHyperNEATPath)
 if pyHyperNEATPath not in sys.path:
     sys.path.append(pyHyperNEATPath)
 

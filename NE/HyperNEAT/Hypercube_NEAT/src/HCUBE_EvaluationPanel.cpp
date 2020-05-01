@@ -34,7 +34,7 @@ namespace HCUBE
 
     /*EvaluationPanel::EvaluationPanel(
         Experiment *_experiment,
-        shared_ptr<NEAT::GeneticIndividual> _individual,
+        boost::shared_ptr<NEAT::GeneticIndividual> _individual,
         wxWindow* _parent,
         const wxPoint& pos,
         const wxSize& size
@@ -55,7 +55,7 @@ namespace HCUBE
         cout << "done!\n";
     }*/
 
-    void EvaluationPanel::setTarget(shared_ptr<Experiment> _experiment,shared_ptr<NEAT::GeneticIndividual> _individual)
+    void EvaluationPanel::setTarget(boost::shared_ptr<Experiment> _experiment,boost::shared_ptr<NEAT::GeneticIndividual> _individual)
     {
         if (bitmapLocked)
         {

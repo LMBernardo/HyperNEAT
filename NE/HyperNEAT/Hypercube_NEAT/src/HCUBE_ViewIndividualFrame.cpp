@@ -21,8 +21,8 @@ namespace HCUBE
 
 
     ViewIndividualFrame::ViewIndividualFrame(
-        shared_ptr<Experiment> _experiment,
-        shared_ptr<NEAT::GeneticIndividual> _individual,
+        boost::shared_ptr<Experiment> _experiment,
+        boost::shared_ptr<NEAT::GeneticIndividual> _individual,
         wxWindow* parent,
         int id,
         wxString title,

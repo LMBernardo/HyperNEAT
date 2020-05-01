@@ -40,6 +40,6 @@ typedef boost::minstd_rand base_generator_type;
 typedef boost::uniform_int<> int_distribution_type;
 typedef boost::variate_generator<base_generator_type&, int_distribution_type> int_gen_type;
 
-using namespace boost;
+// using namespace boost;
 
 #endif // HCUBE_BOOST_H_INCLUDED

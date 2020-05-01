@@ -519,19 +519,19 @@ TARGET_LINK_LIBRARIES(
 	# FuegoLib
 
 	debug
-	${BOOST_LIB_PREFIX_NAME}boost_thread-${BOOST_LIB_EXT_NAME_DEBUG}
+	${BOOST_LIB_PREFIX_NAME}boost_thread
  
 	optimized
 	${BOOST_LIB_PREFIX_NAME}boost_thread
 
 	debug
-	${BOOST_LIB_PREFIX_NAME}boost_filesystem-${BOOST_LIB_EXT_NAME_DEBUG}
+	${BOOST_LIB_PREFIX_NAME}boost_filesystem
 
 	optimized
 	${BOOST_LIB_PREFIX_NAME}boost_filesystem
 
 	debug
-	 ${BOOST_LIB_PREFIX_NAME}boost_system-${BOOST_LIB_EXT_NAME_DEBUG}
+	 ${BOOST_LIB_PREFIX_NAME}boost_system
 
 	optimized
 	${BOOST_LIB_PREFIX_NAME}boost_system
@@ -543,22 +543,22 @@ IF(USE_GUI)
 			Hypercube_NEAT
 
 			debug
-			wx_based-2.8
+			wx_based
 
 			optimized
-			wx_base-2.8
+			wx_baseu-3.0
 
 			debug
-			wx_mswd_core-2.8
+			wx_mswd_core
 
 			optimized
-			wx_msw_core-2.8
+			wx_msw_core
 
 			debug
-			wx_mswd_adv-2.8
+			wx_mswd_adv
 
 			optimized
-			wx_msw_adv-2.8
+			wx_msw_adv
 			)
 	ELSE(CYGWIN)
 		IF(WIN32)
@@ -626,22 +626,22 @@ IF(USE_GUI)
 				Hypercube_NEAT 
 
 				debug
-				wx_baseud-2.8
+				wx_baseu-3.0
 
 				optimized
-				wx_baseu-2.8
+				wx_baseu-3.0
 
 				debug
-				wx_gtk2ud_core-2.8
+				wx_gtk3u_core-3.0
 
 				optimized
-				wx_gtk2u_core-2.8
+				wx_gtk3u_core-3.0
 
 				debug
-				wx_gtk2ud_adv-2.8
+				wx_gtk3u_adv-3.0
 
 				optimized
-				wx_gtk2u_adv-2.8
+				wx_gtk3u_adv-3.0
 				)
 			ENDIF(APPLE)
 		ENDIF(WIN32)
@@ -817,7 +817,7 @@ IF(BUILD_MPI)
 				Hypercube_NEAT_MPI
 
 				debug
-				wx_based-2.8
+				wx_baseu-3.0
 
 				optimized
 				wx_base-2.8
@@ -900,22 +900,22 @@ IF(BUILD_MPI)
 				Hypercube_NEAT_MPI
 
 				debug
-				wx_baseud-2.8
+				wx_baseu-3.0
 
 				optimized
-				wx_baseu-2.8
+				wx_baseu-3.0
 
 				debug
-				wx_gtk2ud_core-2.8
+				wx_gtk3u_core-3.0
 
 				optimized
-				wx_gtk2u_core-2.8
+				wx_gtk3u_core-3.0
 
 				debug
-				wx_gtk2ud_adv-2.8
+				wx_gtk3u_adv-3.0
 
 				optimized
-				wx_gtk2u_adv-2.8
+				wx_gtk3u_adv-3.0
 				)
 			ENDIF(APPLE)
 			ENDIF(WIN32)

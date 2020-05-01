@@ -23,7 +23,7 @@ namespace HCUBE
             //outputBitmap(size.x,size.y)
     {}
 
-    void NeuralNetworkPanel::setTarget(shared_ptr<NEAT::GeneticIndividual> individual)
+    void NeuralNetworkPanel::setTarget(boost::shared_ptr<NEAT::GeneticIndividual> individual)
     {
         networkVisualizationPanel->createNetworkImage(individual);
         networkAdjacency->setTarget(individual);
@@ -39,7 +39,7 @@ namespace HCUBE
         return networkAdjacency->isReadOnly();
     }
 
-    /*void NeuralNetworkPanel::createNetworkImage(shared_ptr<const NEAT::GeneticIndividual> individual)
+    /*void NeuralNetworkPanel::createNetworkImage(boost::shared_ptr<const NEAT::GeneticIndividual> individual)
     {
         {
             // Create a memory DC

@@ -165,7 +165,7 @@ class HyperNEATVisualizer(object):
         pass
     
     def mouseReleased(self,button,x,y):
-        print 'Clicked on pixel',(x,y)
+        print('Clicked on pixel',(x,y))
         for rectNodePair in self.substrateRenderer.nodeScreenRects:
             rect,node = rectNodePair[0],rectNodePair[1]
             if rect[0][0]<=x and rect[1][0]>=x and rect[0][1]<=y and rect[1][1]>=y:
@@ -173,9 +173,9 @@ class HyperNEATVisualizer(object):
                     #Don't do anything if the user didn't click on an input node
                     break
                 
-                print 'Clicked on node',node
-                print self.substrateRenderer.hardcodedInputs.get(node,0.0),'->',
-                print button
+                print('Clicked on node',node)
+                print(self.substrateRenderer.hardcodedInputs.get(node,0.0),'->')
+                print(button)
                 if button == GLUT_LEFT_BUTTON:
                     modifier = 0.5
                 elif button == GLUT_RIGHT_BUTTON:
@@ -184,7 +184,7 @@ class HyperNEATVisualizer(object):
                     modifier = 0.0
                 self.substrateRenderer.hardcodedInputs[node] = \
                     self.substrateRenderer.hardcodedInputs.get(node,0.0) + modifier 
-                print self.substrateRenderer.hardcodedInputs.get(node,0.0)
+                print(self.substrateRenderer.hardcodedInputs.get(node,0.0))
                 self.substrateRenderer.networkDirty = True
                 break
         pass
@@ -206,11 +206,11 @@ class HyperNEATVisualizer(object):
         elif args[0]=='e':
             self.distanceVelocity += CAMERA_SPEED*0.25
         else:
-            print args
+            print(args)
 
     # The function called whenever a key is pressed. Note the use of Python tuples to pass in: (key, x, y)  
     def keyReleased(self,*args):
-        print args
+        print(args)
         # If escape is pressed, kill everything.
         if args[0] == '\033':
             glutDestroyWindow(self.window)
@@ -274,7 +274,7 @@ class HyperNEATVisualizer(object):
                 self.currentIndividual = min(self.population.getIndividualCount(self.currentGeneration)-1,self.currentIndividual+10)
                 self.loadIndividual()
         else:
-            print args
+            print(args)
             
     def loadPopulation(self):
         while True:
@@ -305,19 +305,19 @@ class HyperNEATVisualizer(object):
                     for y in xrange(5,8):
                         hardcodedInputs[(x+y%2,y,0)] = -0.5
                     
-        print 'Generation:',self.currentGeneration
+        print('Generation:',self.currentGeneration)
         self.substrate.populateSubstrate(self.population.getIndividual(self.currentIndividual,self.currentGeneration))
-        print 'CREATING SUBSTRATE RENDERER'
+        print('CREATING SUBSTRATE RENDERER')
         self.substrateRenderer = SubstrateRenderer(self.substrate,hardcodedInputs)
             
     def initNEAT(self):
-        print "INIT NEAT1"
+        print("INIT NEAT1")
         self.loadPopulation()
         
-        print "INIT NEAT2"
+        print("INIT NEAT2")
         self.substrate = LayeredSubstrate()
         
-        print "INIT NEAT3"
+        print("INIT NEAT3")
         layerSizes = [(8,8),(8,8),(1,1)]
         layerAdjacencyList = [(0,1),(1,2)]
         layerIsInput = [True,False,False]
@@ -326,13 +326,13 @@ class HyperNEATVisualizer(object):
         useOldOutputNames = True
         
         self.substrate.setLayerInfoFromCurrentExperiment()
-        print "INIT NEAT4"
+        print("INIT NEAT4")
         self.loadIndividual()
-        print "INIT NEAT5"
+        print("INIT NEAT5")
         
         
     def update(self,value):
-        #print 'updating'
+        #print('updating')
         self.lookdownAngle += (self.lookdownVelocity*10.0/1000.0)
         self.lookdownAngle = min(pi/2,max(0,self.lookdownAngle))
         
@@ -344,9 +344,9 @@ class HyperNEATVisualizer(object):
             
         self.distance += self.distanceVelocity
         self.distance = max(1,self.distance) 
-        #print self.lookdownAngle
+        #print(self.lookdownAngle)
 
-        #print self.mousePos
+        #print(self.mousePos)
         self.substrateRenderer.nodeSelected = (-1,-1,-1)
         for rectNodePair in self.substrateRenderer.nodeScreenRects:
             rect,node = rectNodePair[0],rectNodePair[1]

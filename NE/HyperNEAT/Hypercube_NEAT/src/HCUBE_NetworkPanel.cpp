@@ -34,7 +34,7 @@ namespace HCUBE
             wxPanel(parent, id, pos, size, style),
             outputBitmap(size.x,size.y)
     {}
-    void NetworkPanel::createNetworkImage(shared_ptr<const NEAT::GeneticIndividual> individual)
+    void NetworkPanel::createNetworkImage(boost::shared_ptr<const NEAT::GeneticIndividual> individual)
     {
         // Create a memory DC
         wxMemoryDC dc;

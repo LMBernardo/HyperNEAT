@@ -26,7 +26,7 @@ namespace HCUBE
             wxGrid(parent,id,pos,size,style,name)
     {}
 
-    void NeuralNetworkWeightGrid::setTarget(shared_ptr<NEAT::GeneticIndividual> _individual)
+    void NeuralNetworkWeightGrid::setTarget(boost::shared_ptr<NEAT::GeneticIndividual> _individual)
     {
         if (individual==_individual)
         {
